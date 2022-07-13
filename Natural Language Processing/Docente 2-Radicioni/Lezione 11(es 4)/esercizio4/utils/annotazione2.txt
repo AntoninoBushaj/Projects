@@ -1,0 +1,48 @@
+recessione	pil	bn:00066516n	bn:00037570n	crisi	soldi,indicatore
+cesare	giulio cesare	bn:14525593n	bn:02827562n	nome,persona	imperatore,roma,potere
+paziente	sessione	bn:00001742n	bn:00070689n	pazienza,ammalato	esami,informatica,gioco
+comportamentismo	terapia	bn:00009659n	bn:00076843n	teoria,psicologia	cura,psicologo,farmacologica
+imperatore	costituzione	bn:00030601n	bn:02436267n	roma,potere,impero	legge,stato,carta
+matematico	spettacolo	bn:00053834n	bn:00305552n	studioso,preciso	varietà,televisione
+entropia	informazione	bn:00576743n	bn:00046698n	misura,confusione,numeri	bit,notizie,stampa
+acqua di rose	olio di rosa	bn:00068288n	bn:00007010n	profumo,superficiale	olio,pianta,grasso
+agrume	pompelmo	bn:00019301n	bn:00041408n	agrumi,agrumeto	limone,arancia,mandarino
+regina vittoria	inghilterra	bn:00065652n	bn:00030861n	regina,governante,imperatrice	regno,corona,inglese
+giochi olimpici	spirito	bn:00058910n	bn:03467056n	sport,gare,competizioni	anima,animo,sentimento
+vescovo	musulmano	bn:03012712n	bn:00047600n	papa,prete,cardinale	religioso,arabo,moschea
+uomo	sospetto	bn:00044576n	bn:00075447n	maschio	sospettato
+meteorite	terra	bn:00054598n	bn:01340315n	meteora,roccia,satellite	pianeta,abitabile
+simbolo	segno	bn:01738734n	bn:00081546n	simbologia,simbolismo,scrittura	segnalibro,segnale,segnato
+antropologia	new york	bn:02529040n	bn:02530635n	antropologo,materia,studioso	città,usa,metropoli
+tramonto	tavolo	bn:00075204n	bn:00075813n	tramonti, sole	tavolino,tavoli
+cittadina	città	bn:02247707n	bn:03174083n	abitanti, case	palazzi,
+giacca	acqua minerale	bn:00041211n	bn:00055131n	indumento, inverno,freddo	potabile, acqua
+natura	flora	bn:00035907n	bn:01216797n	alberi, animali, paesaggi	albero,frutto
+subroutine	compilatore	bn:00036826n	bn:00021344n	routine, abitudine, giornaliero	programma,java
+hamadan	roma	bn:03266645n	bn:01341486n		città,capitale,italia
+ombrello	stufa	bn:00078920n	bn:00074479n	pioggia,rotondo	calore,inverno,elettrica
+onore	stima	bn:00027103n	bn:00035865n	onorevole,onorato,onorifico	stimabile,stimare,stimato
+insegna	dignità	bn:00002823n	bn:01007285n	insegnare,insegnamento,insegnato	dignitoso, rispetto
+joystick	radar	bn:00022301n	bn:00054808n	controller,playstation,wireless	aereo
+basmati	riso jasmine	bn:00567353n	bn:02666084n	riso,riso bianco, riso ribe	compilatore,persona,nome
+medaglia	scarpe da ginnastica	bn:14388938n	bn:00068586n	medaglione,medagliere,ricompensa	scarpe,jogging,palestra
+legge	piscina	bn:00008786n	bn:00063165n	leggi,regola, stato	piscina olimpionica,acqua,nuoto
+sorgente	scatola	bn:00043351n	bn:00015103n	acqua,getto,inizio	contenitore, recipiente, cartone
+teatro	batteria	bn:00007096n	bn:00009065n	spettacolo,pubblico,opera	strumento,musica,bacchette
+flora	web browser	bn:00372279n	bn:00013447n	piante,vegetazione	motore di ricerca,google,internet
+camicia	cardigan	bn:00071142n	bn:00015958n	stirare,maglietta,giacca	giacchetta,golf,pullover
+poema	ritmo	bn:00702170n	bn:00009396n	articolo,saggio,lettera	cadenza,suono
+profeta	prete	bn:00064759n	bn:01104180n	messia,veggente,oracolo	monaco,ecclesiastico,reverendo
+oscar	stadio	bn:00407538n	bn:00061898n	evento	sport,arena,olimpico
+backgammon	go	bn:00007779n	bn:00011647n	tavola reale,sbaraglino	gioco,AI
+farfalla	rosa	bn:00050734n	bn:03285036n	animale,bruco	rose,fiore,rose rosse
+recinto	salto	bn:00034048n	bn:01439417n	steccato,cintura,staccionata	fosso,balzo,guizzo
+nichilismo	film	bn:00045632n	bn:03338297n	pessimismo,nichilista,depresso	opera,cortometraggio,trasmissione
+asteroide	stella	bn:00006608n	bn:00073965n	meteorite,corpo	pianeta
+sommossa	disegno	bn:01480882n	bn:00005927n	rissa,rivolta,sovversivo	immagine,pittura,esemplare
+intimo	corpo	bn:00047249n	bn:00011744n	personale,nascosto,celato	busto,scheletro,fusto
+boeing	aereo	bn:03763661n	bn:00002275n	aereo,volo,spazio	aereoplano,velivolo,aerei
+cameo	interpretazione	bn:03871797n	bn:00061560n	film,apparizione	ruolo,comparsa
+arancia	agrume	bn:00059251n	bn:00036700n	frutta,arancie,	agrumi,acredine
+ghiacciaio	riscaldamento globale	bn:00040579n	bn:00040681n	freddo,ghiaccio	clima
+galleria	percorso	bn:02899611nbn:00061006n	tunnel,traforo,strada	itinerario,tracciato,strada

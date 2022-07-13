@@ -1,0 +1,50 @@
+recessione	PIL	2
+Cesare	Giulio Cesare	1.8      
+paziente	sessione	0
+comportamentismo	terapia	0
+imperatore	costituzione	0.5
+matematico	spettacolo	0
+entropia	informazione	1
+acqua di rose	olio di rosa	1.8
+agrume	pompelmo	3
+Regina Vittoria	Inghilterra	2.8
+Giochi Olimpici	spirito	0
+vescovo	musulmano	0
+uomo	sospetto	0.8
+meteorite	Terra	1.3
+simbolo	segno	2.4
+antropologia	New York	0.3
+tramonto	tavolo	0
+cittadina	città	3.2
+giacca	acqua minerale	0
+natura	flora	3.2
+subroutine	compilatore	0
+Hamadan	Roma	0
+ombrello	stufa	0
+onore	stima	2.8
+insegna	dignità	0
+KFC	McDonald's	3.7
+joystick	radar	0
+basmati	riso jasmine	0
+medaglia	scarpe da ginnastica	2.1
+legge	piscina	0
+sorgente	scatola	0.3
+teatro	batteria	1
+flora	web browser	0
+camicia	cardigan	2
+poema	ritmo	0
+profeta	prete	0
+Oscar	stadio	0
+backgammon	Go	0
+farfalla	rosa	0.3
+recinto	salto	1
+nichilismo	film	0
+asteroide	stella	3.8
+sommossa	disegno	0
+intimo	corpo	2.8
+Boeing	aereo	3.9
+cameo	interpretazione	3.5
+semestre	quadrimestre	3
+arancia	agrume	3.2
+ghiacciaio	riscaldamento globale	1
+galleria	percorso	0
