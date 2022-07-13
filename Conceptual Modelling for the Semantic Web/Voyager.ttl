@@ -1,0 +1,1426 @@
+@prefix : <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix vann: <http://aims.fao.org/aos/agrovoc/c_32502#vann:> .
+@prefix swrla: <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#> .
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix partof: <http://www.ontologydesignpatterns.org/cp/owl/partof.owl_#> .
+@prefix c_32502: <http://aims.fao.org/aos/agrovoc/c_32502#> .
+@prefix partof1: <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#> .
+@prefix voyager: <http://www.semanticweb.org/voyager#> .
+@prefix Agriculturalproducts: <http://aims.fao.org/aos/agrovoc/c_8678> .
+@base <http://www.semanticweb.org/voyager> .
+
+<http://www.semanticweb.org/voyager> rdf:type owl:Ontology ;
+                                      vann:preferredNamespacePrefix "voyager" ;
+                                      vann:preferredNamespaceUri "http://www.semanticweb.org/voyager" ;
+                                      dc:creator "Antonino Bushaj" ;
+                                      dc:date "2022-06-07" ;
+                                      dc:description "Voyager è un'ontologia per la rappresentazione e l'esposizione di mete turistiche specifiche per varie localita del mondo, con particolare attenzione all'area del Mediterraneo" ;
+                                      dc:title "Voyager- il viaggio" ;
+                                      terms:license "https://opensource.org/licenses/mit-license.php/" ;
+                                      rdfs:label "Voyager" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+swrla:isRuleEnabled rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+rdfs:label rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl#HasPart
+partof1:HasPart rdf:type owl:ObjectProperty ;
+                owl:inverseOf partof:IsPartOf ;
+                rdf:type owl:TransitiveProperty ;
+                rdfs:domain voyager:GeographicEntity ;
+                rdfs:range voyager:GeographicEntity ;
+                rdfs:comment "Indica che un'entità geografica ha annessa a se un'entità minore" ;
+                rdfs:label "HasPart" .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl_#IsPartOf
+partof:IsPartOf rdf:type owl:ObjectProperty ,
+                         owl:TransitiveProperty ;
+                rdfs:domain voyager:GeographicEntity ;
+                rdfs:range voyager:GeographicEntity ;
+                rdfs:comment "Indica che un entità geografica fa parte di un entità più grande" ;
+                rdfs:label "IsPartOf" .
+
+
+###  http://www.semanticweb.org/voyager#CityIsLocatedIn
+voyager:CityIsLocatedIn rdf:type owl:ObjectProperty ;
+                        owl:inverseOf voyager:HasCity ;
+                        rdfs:domain voyager:City ;
+                        rdfs:range voyager:State ;
+                        rdfs:comment "Una città è localizzata in una determinata regione" ;
+                        rdfs:label "CityIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#ContainsFood
+voyager:ContainsFood rdf:type owl:ObjectProperty ;
+                     owl:inverseOf voyager:FoodIsContained ;
+                     rdf:type owl:TransitiveProperty ;
+                     rdfs:domain voyager:Food ;
+                     rdfs:range voyager:Food ;
+                     rdfs:comment "Indica che un tipo di cucina contiene dei piatti specifici" ;
+                     rdfs:label "ContainsFood" .
+
+
+###  http://www.semanticweb.org/voyager#Does
+voyager:Does rdf:type owl:ObjectProperty ;
+             owl:inverseOf voyager:IsMadeIn ;
+             rdfs:domain voyager:State ;
+             rdfs:range voyager:Food ;
+             rdfs:comment "Indica che uno stato prepara un particolare piatto tipico" ;
+             rdfs:label "Does" .
+
+
+###  http://www.semanticweb.org/voyager#FoodIsContained
+voyager:FoodIsContained rdf:type owl:ObjectProperty ,
+                                 owl:TransitiveProperty ;
+                        rdfs:domain voyager:Food ;
+                        rdfs:range voyager:Food ;
+                        rdfs:comment "Un cibo è prodotto in una regione" ;
+                        rdfs:label "FoodIsContained" .
+
+
+###  http://www.semanticweb.org/voyager#HasCapital
+voyager:HasCapital rdf:type owl:ObjectProperty ;
+                   owl:inverseOf voyager:IsCapitalOf ;
+                   rdfs:domain voyager:State ;
+                   rdfs:range voyager:City ;
+                   rdfs:comment "Indica che una nazione ha quella capitale" ;
+                   rdfs:label "HasCapital" .
+
+
+###  http://www.semanticweb.org/voyager#HasCity
+voyager:HasCity rdf:type owl:ObjectProperty ;
+                rdfs:domain voyager:State ;
+                rdfs:range voyager:City ;
+                rdfs:comment "Una nazione contiene quella città" ;
+                rdfs:label "HasCity" .
+
+
+###  http://www.semanticweb.org/voyager#HasDestination
+voyager:HasDestination rdf:type owl:ObjectProperty ;
+                       rdfs:domain voyager:State ;
+                       rdfs:range voyager:Destination ;
+                       owl:propertyChainAxiom ( voyager:HasMountain
+                                                voyager:HasLake
+                                              ) ;
+                       rdfs:comment "Una nazione ha una determinata destinazione" ;
+                       rdfs:label "HasDestination" .
+
+
+###  http://www.semanticweb.org/voyager#HasIsland
+voyager:HasIsland rdf:type owl:ObjectProperty ;
+                  owl:inverseOf voyager:IslandIsLocatedIn ;
+                  rdfs:domain voyager:State ;
+                  rdfs:range voyager:Island ;
+                  rdfs:comment "Indica che uno stato contiente un'isola" ;
+                  rdfs:label "HasIsland" .
+
+
+###  http://www.semanticweb.org/voyager#HasLake
+voyager:HasLake rdf:type owl:ObjectProperty ;
+                owl:inverseOf voyager:LakeIsLocatedIn ;
+                rdfs:domain [ rdf:type owl:Class ;
+                              owl:unionOf ( voyager:Mountain
+                                            voyager:State
+                                          )
+                            ] ;
+                rdfs:range voyager:Lake ;
+                rdfs:comment "Indica che una nazione contiene un lago" ;
+                rdfs:label "HasLake" .
+
+
+###  http://www.semanticweb.org/voyager#HasLessTourist
+voyager:HasLessTourist rdf:type owl:ObjectProperty ;
+                       owl:inverseOf voyager:HasMoreTourist ;
+                       rdf:type owl:TransitiveProperty ;
+                       rdfs:domain voyager:Island ;
+                       rdfs:range voyager:Island ;
+                       rdfs:comment "Un'isola contiene meno turisti di un'altra isola" ;
+                       rdfs:label "HasLessTourist" .
+
+
+###  http://www.semanticweb.org/voyager#HasMoreTourist
+voyager:HasMoreTourist rdf:type owl:ObjectProperty ,
+                                owl:TransitiveProperty ;
+                       rdfs:domain voyager:Island ;
+                       rdfs:range voyager:Island ;
+                       rdfs:comment "Un'isola contiene più turisti di un'altra isola" ;
+                       rdfs:label "HasMoreTourist" .
+
+
+###  http://www.semanticweb.org/voyager#HasMountain
+voyager:HasMountain rdf:type owl:ObjectProperty ;
+                    owl:inverseOf voyager:MountainIsLocatedIn ;
+                    rdfs:domain voyager:State ;
+                    rdfs:range voyager:Mountain ;
+                    rdfs:comment "Indica che uno stato contiene una catena montuosa" ;
+                    rdfs:label "HasMountain" .
+
+
+###  http://www.semanticweb.org/voyager#HasPopularIsland
+voyager:HasPopularIsland rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf voyager:HasIsland ;
+                         rdfs:domain voyager:State ;
+                         rdfs:range voyager:Island ;
+                         rdfs:comment "Uno stato contiene un'isola popolare" ;
+                         rdfs:label "HasPopularIsland" .
+
+
+###  http://www.semanticweb.org/voyager#HasRiver
+voyager:HasRiver rdf:type owl:ObjectProperty ;
+                 owl:inverseOf voyager:RiverIsLocatedIn ;
+                 rdfs:domain voyager:State ;
+                 rdfs:range voyager:River ;
+                 rdfs:comment "Indica che una nazione contiene un fiume" ;
+                 rdfs:label "HasRiver" .
+
+
+###  http://www.semanticweb.org/voyager#HasSea
+voyager:HasSea rdf:type owl:ObjectProperty ;
+               owl:inverseOf voyager:SeaIsLocatedIn ;
+               rdfs:domain voyager:State ;
+               rdfs:range voyager:Sea ;
+               rdfs:comment "Indica che una nazione sfocia su un determinato mare" ;
+               rdfs:label "HasSea" .
+
+
+###  http://www.semanticweb.org/voyager#IsCapitalOf
+voyager:IsCapitalOf rdf:type owl:ObjectProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain voyager:City ;
+                    rdfs:range voyager:State ;
+                    rdfs:comment "Indica che la citta è capitale di una determinata nazione" ;
+                    rdfs:label "IsCapitalOf" .
+
+
+###  http://www.semanticweb.org/voyager#IsMadeIn
+voyager:IsMadeIn rdf:type owl:ObjectProperty ;
+                 rdfs:domain voyager:Food ;
+                 rdfs:range voyager:State ;
+                 rdfs:comment "Indica che un determinato cibo è prodotto in quello stato" ;
+                 rdfs:label "IsMadeIn" .
+
+
+###  http://www.semanticweb.org/voyager#IslandIsLocatedIn
+voyager:IslandIsLocatedIn rdf:type owl:ObjectProperty ;
+                          rdfs:domain voyager:Island ;
+                          rdfs:range voyager:State ;
+                          rdfs:comment "Indica che un'isola è localizzata in un determinato luogo" ;
+                          rdfs:label "IslandIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#LakeIsLocatedIn
+voyager:LakeIsLocatedIn rdf:type owl:ObjectProperty ;
+                        rdfs:domain voyager:Lake ;
+                        rdfs:range [ rdf:type owl:Class ;
+                                     owl:unionOf ( voyager:Mountain
+                                                   voyager:State
+                                                 )
+                                   ] ;
+                        rdfs:comment "Indica che un lago è localizzato in un determinato luogo" ;
+                        rdfs:label "LakeIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#MountainIsLocatedIn
+voyager:MountainIsLocatedIn rdf:type owl:ObjectProperty ;
+                            rdfs:domain voyager:Mountain ;
+                            rdfs:range voyager:State ;
+                            rdfs:comment "Indica che una montagna è localizzata in un determinato luogo" ;
+                            rdfs:label "MountainIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#RiverIsLocatedIn
+voyager:RiverIsLocatedIn rdf:type owl:ObjectProperty ;
+                         rdfs:domain voyager:River ;
+                         rdfs:range voyager:State ;
+                         rdfs:comment "Indica che un fiume è localizzato in un determinato luogo" ;
+                         rdfs:label "RiverIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#SeaIsLocatedIn
+voyager:SeaIsLocatedIn rdf:type owl:ObjectProperty ;
+                       rdfs:domain voyager:Sea ;
+                       rdfs:range voyager:State ;
+                       rdfs:comment "Indica che un mare è localizzato in un determinato luogo" ;
+                       rdfs:label "SeaIsLocatedIn" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/voyager#Height
+voyager:Height rdf:type owl:DatatypeProperty ;
+               rdfs:domain voyager:Mountain ;
+               rdfs:range xsd:integer ;
+               rdfs:comment "Altezza massima di una catena montuosa" ;
+               rdfs:label "Height" .
+
+
+###  http://www.semanticweb.org/voyager#Length
+voyager:Length rdf:type owl:DatatypeProperty ;
+               rdfs:domain voyager:River ;
+               rdfs:range xsd:integer ;
+               rdfs:comment "Lunghezza massima di un fiume" ;
+               rdfs:label "Lenght"@en .
+
+
+###  http://www.semanticweb.org/voyager#NumTourists
+voyager:NumTourists rdf:type owl:DatatypeProperty ;
+                    rdfs:domain voyager:Island ;
+                    rdfs:range xsd:integer ;
+                    rdfs:comment "Numero di turisti che un'isola ha annualmente" ;
+                    rdfs:label "NumTourists" .
+
+
+###  http://www.semanticweb.org/voyager#Population
+voyager:Population rdf:type owl:DatatypeProperty ;
+                   rdfs:domain voyager:City ;
+                   rdfs:range xsd:integer ;
+                   rdfs:comment "Popolazione di una Nazione" ;
+                   rdfs:label "Population"@en .
+
+
+###  http://www.semanticweb.org/voyager#Taste
+voyager:Taste rdf:type owl:DatatypeProperty ;
+              rdfs:domain voyager:Food ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Indica il gusto di un particolare piatto, se dolce o salato" ;
+              rdfs:label "Taste" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts
+<http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts> ;
+                                                              rdfs:comment "Prodotti agricoli fuori stagione dello stato specificato" ;
+                                                              rdfs:label "OutOfSeasonProducts" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_32501#OutOfSeasonFruits
+<http://aims.fao.org/aos/agrovoc/c_32501#OutOfSeasonFruits> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts> ;
+                                                            rdfs:comment "Prodotti fruttiferi fuori stagione dello stato specificato" ;
+                                                            rdfs:label "OutOfSeasonFruits" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_32502#OutOfSeasonVegetables
+c_32502:OutOfSeasonVegetables rdf:type owl:Class ;
+                              rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts> ;
+                              rdfs:comment "Prodotti vegetali fuori stagione dello stato specificato" ;
+                              rdfs:label "OutOfSeasonVegetables" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_36642#Bioproducts
+<http://aims.fao.org/aos/agrovoc/c_36642#Bioproducts> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts> ;
+                                                      rdfs:comment "Bioprodotti specifici dello stato indicato" ;
+                                                      rdfs:label "Bioproducts" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts
+<http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts> rdf:type owl:Class ;
+                                                              rdfs:subClassOf voyager:Food ;
+                                                              owl:disjointWith voyager:GeographicEntity ;
+                                                              rdfs:comment "Prodotti agricoli dello stato specificato" ;
+                                                              rdfs:label "AgriculturalProducts" .
+
+
+###  http://www.semanticweb.org/voyager#BalkanCuisine
+voyager:BalkanCuisine rdf:type owl:Class ;
+                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                            owl:onProperty voyager:ContainsFood ;
+                                            owl:someValuesFrom voyager:GreekFood
+                                          ] ;
+                      rdfs:subClassOf voyager:Food ;
+                      rdfs:comment "Cibi balcanici" ;
+                      rdfs:label "BalkanCuisine" .
+
+
+###  http://www.semanticweb.org/voyager#CaribbeanState
+voyager:CaribbeanState rdf:type owl:Class ;
+                       rdfs:subClassOf voyager:Region ;
+                       rdfs:comment "Stati che si affacciano sul Mar dei Caraibi" ;
+                       rdfs:label "CaribbeanState" .
+
+
+###  http://www.semanticweb.org/voyager#City
+voyager:City rdf:type owl:Class ;
+             rdfs:subClassOf voyager:Destination ;
+             rdfs:comment "Città situate in stati che si affacciano sul Mediterraneo" ;
+             rdfs:label "City" .
+
+
+###  http://www.semanticweb.org/voyager#Country
+voyager:Country rdf:type owl:Class ;
+                owl:equivalentClass voyager:State ;
+                rdfs:comment "Nazioni presenti nell'ontologia, allineati tramite Wikidata" ;
+                rdfs:label "Country" .
+
+
+###  http://www.semanticweb.org/voyager#Destination
+voyager:Destination rdf:type owl:Class ;
+                    rdfs:subClassOf voyager:GeographicEntity ;
+                    owl:disjointUnionOf ( voyager:City
+                                          voyager:Island
+                                          voyager:Lake
+                                          voyager:Mountain
+                                          voyager:River
+                                          voyager:Sea
+                                        ) ;
+                    rdfs:comment "Destinazioni turistiche" ;
+                    rdfs:label "Destination" .
+
+
+###  http://www.semanticweb.org/voyager#Food
+voyager:Food rdf:type owl:Class ;
+             owl:disjointWith voyager:GeographicEntity ;
+             owl:disjointUnionOf ( voyager:BalkanCuisine
+                                   voyager:IberianCuisine
+                                   voyager:ItalianFood
+                                 ) ;
+             rdfs:comment "Cibi preparati nei vari stati" ;
+             rdfs:label "Food" .
+
+
+###  http://www.semanticweb.org/voyager#GeographicEntity
+voyager:GeographicEntity rdf:type owl:Class ;
+                         rdfs:comment "Entità geografica generica che può rappresentare qualsiasi località" ;
+                         rdfs:label "GeographicEntity" .
+
+
+###  http://www.semanticweb.org/voyager#GreekFood
+voyager:GreekFood rdf:type owl:Class ;
+                  rdfs:subClassOf voyager:BalkanCuisine ;
+                  rdfs:comment "Cibi preparati in Grecia" ;
+                  rdfs:label "GreekFood" .
+
+
+###  http://www.semanticweb.org/voyager#IberianCuisine
+voyager:IberianCuisine rdf:type owl:Class ;
+                       rdfs:subClassOf voyager:Food ;
+                       rdfs:comment "Cibi iberici" ;
+                       rdfs:label "IberianCuisine" .
+
+
+###  http://www.semanticweb.org/voyager#Island
+voyager:Island rdf:type owl:Class ;
+               rdfs:subClassOf voyager:Destination ;
+               rdfs:comment "Isole situate in stati che si affacciano sul Mediterraneo" ;
+               rdfs:label "Island" .
+
+
+###  http://www.semanticweb.org/voyager#ItalianFood
+voyager:ItalianFood rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:oneOf ( :Arancino
+                                                      :Carbonara
+                                                      :Pizza
+                                                    )
+                                        ] ;
+                    rdfs:subClassOf voyager:Food ;
+                    rdfs:comment "Cibi preparati in Italia" ;
+                    rdfs:label "ItalianFood" .
+
+
+###  http://www.semanticweb.org/voyager#Lake
+voyager:Lake rdf:type owl:Class ;
+             rdfs:subClassOf voyager:Destination ;
+             rdfs:comment "Laghi situati in stati che si affacciano sul Mediterraneo" ;
+             rdfs:label "Lake" .
+
+
+###  http://www.semanticweb.org/voyager#MediterraneanState
+voyager:MediterraneanState rdf:type owl:Class ;
+                           rdfs:subClassOf voyager:Region ;
+                           rdfs:comment "Stati che si affacciano sul Mediterraneo" ;
+                           rdfs:label "MediterraneanState" .
+
+
+###  http://www.semanticweb.org/voyager#Metropolis
+voyager:Metropolis rdf:type owl:Class ;
+                   rdfs:subClassOf voyager:City ;
+                   rdfs:comment "Città metropolitane con una popolazione maggiore rispetto ad una città normale" ;
+                   rdfs:label "Metropolis" .
+
+
+###  http://www.semanticweb.org/voyager#Mountain
+voyager:Mountain rdf:type owl:Class ;
+                 rdfs:subClassOf voyager:Destination ;
+                 rdfs:comment "Montagne situate in stati che si affacciano sul Mediterraneo" ;
+                 rdfs:label "Mountain" .
+
+
+###  http://www.semanticweb.org/voyager#MountainLake
+voyager:MountainLake rdf:type owl:Class ;
+                     rdfs:subClassOf voyager:Lake ;
+                     rdfs:comment "Laghi che si trovano situati in montagna" ;
+                     rdfs:label "MountainLake" .
+
+
+###  http://www.semanticweb.org/voyager#Region
+voyager:Region rdf:type owl:Class ;
+               rdfs:subClassOf voyager:GeographicEntity ;
+               rdfs:comment "Classe di luoghi che contengono le localita turistiche" ;
+               rdfs:label "Region" .
+
+
+###  http://www.semanticweb.org/voyager#River
+voyager:River rdf:type owl:Class ;
+              rdfs:subClassOf voyager:Destination ;
+              rdfs:comment "Fiumi situati in stati che si affacciano sul Mediterraneo" ;
+              rdfs:label "River" .
+
+
+###  http://www.semanticweb.org/voyager#Sea
+voyager:Sea rdf:type owl:Class ;
+            rdfs:subClassOf voyager:Destination ;
+            rdfs:comment "Mari situati in stati che si affacciano sul Mediterraneo" ;
+            rdfs:label "Sea" .
+
+
+###  http://www.semanticweb.org/voyager#SpanishFood
+voyager:SpanishFood rdf:type owl:Class ;
+                    rdfs:subClassOf voyager:IberianCuisine ;
+                    rdfs:comment "Cibi preparati in Spagna" ;
+                    rdfs:label "SpanishFood" .
+
+
+###  http://www.semanticweb.org/voyager#State
+voyager:State rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                    owl:onProperty voyager:Does ;
+                                    owl:someValuesFrom voyager:Food
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty voyager:HasCapital ;
+                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass voyager:City
+                                  ] ;
+              rdfs:subClassOf voyager:MediterraneanState ;
+              rdfs:comment "Stati che si affacciano sul mediterraneo" ;
+              rdfs:label "State" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Afella
+:Afella rdf:type owl:NamedIndividual ,
+                 voyager:Mountain ;
+        voyager:Height 4043 ;
+        rdfs:comment "Catena montuosa che si trova in Marocco" ;
+        rdfs:label "Afella" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania
+:Albania rdf:type owl:NamedIndividual ,
+                  voyager:State ;
+         owl:sameAs <https://www.wikidata.org/wiki/Q222#Albania> ;
+         partof1:HasPart :Dajt ;
+         voyager:HasCapital :Tirana ;
+         voyager:HasLake :Ohrid ;
+         voyager:HasMountain :Dajt ;
+         voyager:HasRiver :Vjosa ;
+         voyager:HasSea :MarIonio ;
+         rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+         rdfs:label "Albania" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi
+:Alpi rdf:type owl:NamedIndividual ,
+               voyager:Mountain ;
+      voyager:HasLake :Como ;
+      voyager:Height 4809 ;
+      rdfs:comment "catena montuosa che si trova in Italia" ;
+      rdfs:label "Alpi" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Arancino
+:Arancino rdf:type owl:NamedIndividual ,
+                   voyager:ItalianFood ;
+          voyager:IsMadeIn voyager:Italia ;
+          voyager:Taste "salty"^^xsd:string ;
+          rdfs:comment "Cibo preparato in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Atene
+:Atene rdf:type owl:NamedIndividual ,
+                voyager:City ;
+       voyager:IsCapitalOf :Grecia ;
+       voyager:Population 5000000 ;
+       rdfs:comment "Capitale della Grecia" ;
+       rdfs:label "Atene" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Baklava
+:Baklava rdf:type owl:NamedIndividual ,
+                  voyager:GreekFood ;
+         voyager:IsMadeIn :Grecia ;
+         voyager:Taste "sweet"^^xsd:string ;
+         rdfs:comment "Cibo preparato in Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri
+:Capri rdf:type owl:NamedIndividual ,
+                voyager:Island ;
+       voyager:NumTourists 1000000 ;
+       rdfs:comment "Isola che si trova in Italia" ;
+       rdfs:label "Capri" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Carbonara
+:Carbonara rdf:type owl:NamedIndividual ,
+                    voyager:ItalianFood ;
+           voyager:IsMadeIn voyager:Italia ;
+           voyager:Taste "salty"^^xsd:string ;
+           rdfs:comment "Cibo preparato in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como
+:Como rdf:type owl:NamedIndividual ,
+               voyager:Lake ;
+      rdfs:comment "Lago che si trova in Italia" ;
+      rdfs:label "Como" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia
+:Croazia rdf:type owl:NamedIndividual ,
+                  voyager:State ;
+         owl:sameAs <https://www.wikidata.org/wiki/Q224#Croatia> ;
+         voyager:HasCapital :Zagabria ;
+         voyager:HasIsland :Lissa ;
+         voyager:HasLake :Jezero ;
+         voyager:HasMountain :Dinara ;
+         voyager:HasRiver :Danubio ;
+         voyager:HasSea :MarAdriatico ;
+         rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+         rdfs:label "Croazia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt
+:Dajt rdf:type owl:NamedIndividual ,
+               voyager:Mountain ;
+      partof1:HasPart :Ohrid ;
+      partof:IsPartOf :Albania ;
+      voyager:Height 1613 ;
+      rdfs:comment "Catena montuosa che si trova in Albania" ;
+      rdfs:label "Dajt" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Danubio
+:Danubio rdf:type owl:NamedIndividual ,
+                  voyager:River ;
+         voyager:Length 2850 ;
+         rdfs:comment "Fiume che si trova in Croazia" ;
+         rdfs:label "Danubio" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dinara
+:Dinara rdf:type owl:NamedIndividual ,
+                 voyager:Mountain ;
+        voyager:Height 1913 ;
+        rdfs:comment "Catena montuosa che si trova in Croazia" ;
+        rdfs:label "Dinara" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Draa
+:Draa rdf:type owl:NamedIndividual ,
+               voyager:River ;
+      voyager:Length 1100 ;
+      rdfs:comment "Fiume che si trova in Marocco" ;
+      rdfs:label "Draa" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Enos
+:Enos rdf:type owl:NamedIndividual ,
+               voyager:Mountain ;
+      voyager:Height 1628 ;
+      rdfs:comment "Catena montuosa che si trova in Grecia" ;
+      rdfs:label "Enos" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Evros
+:Evros rdf:type owl:NamedIndividual ,
+                voyager:River ;
+       voyager:Length 480 ;
+       rdfs:comment "Fiume che si trova in Grecia" ;
+       rdfs:label "Evros" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Feta
+:Feta rdf:type owl:NamedIndividual ,
+               voyager:GreekFood ;
+      voyager:IsMadeIn :Grecia ;
+      voyager:Taste "salty"^^xsd:string ;
+      rdfs:comment "Cibo preparato in Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Formentera
+:Formentera rdf:type owl:NamedIndividual ,
+                     voyager:Island ;
+            rdfs:comment "Isola che si trova in Spagna" ;
+            rdfs:label "Formentera" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia
+:Grecia rdf:type owl:NamedIndividual ,
+                 voyager:State ;
+        owl:sameAs <https://www.wikidata.org/wiki/Q41#Greece> ;
+        voyager:Does :Baklava ,
+                     :Feta ;
+        voyager:HasCapital :Atene ;
+        voyager:HasIsland :Rodi ,
+                          :Santorini ;
+        voyager:HasLake :Plastiras ;
+        voyager:HasMountain :Enos ;
+        voyager:HasRiver :Evros ;
+        voyager:HasSea :MarEgeo ;
+        rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+        rdfs:label "Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Iriki
+:Iriki rdf:type owl:NamedIndividual ,
+                voyager:Lake ;
+       rdfs:comment "Lago che si trova in Marocco" ;
+       rdfs:label "Iriki" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#IsolaRey
+:IsolaRey rdf:type owl:NamedIndividual ,
+                   voyager:Island ;
+          rdfs:comment "Isola che si trova in Marocco" ;
+          rdfs:label "IsolaRey" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jamon
+:Jamon rdf:type owl:NamedIndividual ,
+                voyager:SpanishFood ;
+       voyager:IsMadeIn :Spagna ;
+       voyager:Taste "salty"^^xsd:string ;
+       rdfs:comment "Cibo preparato in Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jezero
+:Jezero rdf:type owl:NamedIndividual ,
+                 voyager:Lake ;
+        rdfs:comment "Lago che si trova in Croazia" ;
+        rdfs:label "Jezero" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lipari
+:Lipari rdf:type owl:NamedIndividual ,
+                 voyager:Island ;
+        rdfs:comment "Isola che si trova in Italia" ;
+        rdfs:label "Lipari" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lissa
+:Lissa rdf:type owl:NamedIndividual ,
+                voyager:Island ;
+       rdfs:comment "Isola che si trova in Croazia" ;
+       rdfs:label "Lissa" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Madrid
+:Madrid rdf:type owl:NamedIndividual ,
+                 voyager:City ;
+        voyager:IsCapitalOf :Spagna ;
+        voyager:Population 5000000 ;
+        rdfs:comment "Capitale della Spagna" ;
+        rdfs:label "Madrid" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarAdriatico
+:MarAdriatico rdf:type owl:NamedIndividual ,
+                       voyager:Sea ;
+              rdfs:comment "Mare che si affaccia sull'Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDelleBaleari
+:MarDelleBaleari rdf:type owl:NamedIndividual ,
+                          voyager:Sea ;
+                 rdfs:comment "Mare che si affaccia sulla Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDiAlboran
+:MarDiAlboran rdf:type owl:NamedIndividual ,
+                       voyager:Sea ;
+              rdfs:comment "Mare che si affaccia sul Marocco" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarEgeo
+:MarEgeo rdf:type owl:NamedIndividual ,
+                  voyager:Sea ;
+         rdfs:comment "Mare che si affaccia sulla Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarIonio
+:MarIonio rdf:type owl:NamedIndividual ,
+                   voyager:Sea ;
+          rdfs:comment "Mare che si affaccia sull'Albania" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarTirreno
+:MarTirreno rdf:type owl:NamedIndividual ,
+                     voyager:Sea ;
+            rdfs:comment "Mare che si affaccia sulla Croazia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco
+:Marocco rdf:type owl:NamedIndividual ,
+                  voyager:State ;
+         owl:sameAs <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+         voyager:HasCapital :Rabat ;
+         voyager:HasIsland :IsolaRey ;
+         voyager:HasLake :Iriki ;
+         voyager:HasMountain :Afella ;
+         voyager:HasRiver :Draa ;
+         voyager:HasSea :MarDiAlboran ;
+         rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+         rdfs:label "Marocco" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Miño
+:Miño rdf:type owl:NamedIndividual ,
+               voyager:River ;
+      voyager:Length 340 ;
+      rdfs:comment "Fiume che si trova in Spagna" ;
+      rdfs:label "Miño" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid
+:Ohrid rdf:type owl:NamedIndividual ,
+                voyager:Lake ;
+       partof:IsPartOf :Dajt ;
+       rdfs:comment "Lago che si trova in Albania" ;
+       rdfs:label "Ohrid" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Paella
+:Paella rdf:type owl:NamedIndividual ,
+                 voyager:SpanishFood ;
+        voyager:IsMadeIn :Spagna ;
+        voyager:Taste "salty"^^xsd:string ;
+        rdfs:comment "Cibo preparato in Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Pizza
+:Pizza rdf:type owl:NamedIndividual ,
+                voyager:ItalianFood ;
+       voyager:IsMadeIn voyager:Italia ;
+       voyager:Taste "salty"^^xsd:string ;
+       rdfs:comment "Cibo preparato in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Plastiras
+:Plastiras rdf:type owl:NamedIndividual ,
+                    voyager:Lake ;
+           rdfs:comment "Lago che si trova in Grecia" ;
+           rdfs:label "Plastiras" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Po
+:Po rdf:type owl:NamedIndividual ,
+             voyager:River ;
+    voyager:Length 650 ;
+    rdfs:comment "Fiume che si trova in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rabat
+:Rabat rdf:type owl:NamedIndividual ,
+                voyager:City ;
+       voyager:IsCapitalOf :Marocco ;
+       voyager:Population 500000 ;
+       rdfs:comment "Capitale del Marocco" ;
+       rdfs:label "Rabat" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi
+:Rodi rdf:type owl:NamedIndividual ,
+               voyager:Island ;
+      voyager:NumTourists 300000 ;
+      rdfs:comment "Isola che si trova in Grecia" ;
+      rdfs:label "Rodi" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Roma
+:Roma rdf:type owl:NamedIndividual ,
+               voyager:City ;
+      voyager:IsCapitalOf voyager:Italia ;
+      voyager:Population 2800000 ;
+      rdfs:comment "Capitale dell'Italia" ;
+      rdfs:label "Roma" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Sanabria
+:Sanabria rdf:type owl:NamedIndividual ,
+                   voyager:Lake ;
+          rdfs:comment "Lago che si trova in Spagna" ;
+          rdfs:label "Sanabria" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini
+:Santorini rdf:type owl:NamedIndividual ,
+                    voyager:Island ;
+           voyager:NumTourists 500000 ;
+           rdfs:comment "Isola che si trova in Grecia" ;
+           rdfs:label "Santorini" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna
+:Spagna rdf:type owl:NamedIndividual ,
+                 voyager:State ;
+        owl:sameAs <https://www.wikidata.org/wiki/Q29#Spain> ;
+        voyager:Does :Jamon ,
+                     :Paella ;
+        voyager:HasCapital :Madrid ;
+        voyager:HasIsland :Formentera ,
+                          :Tenerife ;
+        voyager:HasLake :Sanabria ;
+        voyager:HasMountain :Teide ,
+                            voyager:ElToro ;
+        voyager:HasRiver :Miño ;
+        voyager:HasSea :MarDelleBaleari ;
+        rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+        rdfs:label "Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Teide
+:Teide rdf:type owl:NamedIndividual ,
+                voyager:Mountain ;
+       voyager:Height 3715 ;
+       rdfs:comment "Montagna che si trova in Spagna(Isole Canarie)" ;
+       rdfs:label "Teide" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife
+:Tenerife rdf:type owl:NamedIndividual ,
+                   voyager:Island ;
+          voyager:NumTourists 10000000 ;
+          rdfs:comment "Isola che si trova in Spagna" ;
+          rdfs:label "Tenerife" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tirana
+:Tirana rdf:type owl:NamedIndividual ,
+                 voyager:City ;
+        voyager:IsCapitalOf :Albania ;
+        voyager:Population 600000 ;
+        rdfs:comment "Capitale dell'Albania" ;
+        rdfs:label "Tirana" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Vjosa
+:Vjosa rdf:type owl:NamedIndividual ,
+                voyager:River ;
+       voyager:Length 272 ;
+       rdfs:comment "Fiume che si trova in Albania" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Zagabria
+:Zagabria rdf:type owl:NamedIndividual ,
+                   voyager:City ;
+          voyager:IsCapitalOf :Croazia ;
+          voyager:Population 800000 ;
+          rdfs:comment "Capitale della Croazia" ;
+          rdfs:label "Zagabria" .
+
+
+###  http://www.semanticweb.org/voyager#Appennini
+voyager:Appennini rdf:type owl:NamedIndividual ,
+                           voyager:Mountain ;
+                  voyager:Height "2000"^^xsd:int .
+
+
+###  http://www.semanticweb.org/voyager#Barcellona
+voyager:Barcellona rdf:type owl:NamedIndividual ,
+                            voyager:City ;
+                   voyager:CityIsLocatedIn :Spagna ;
+                   voyager:Population "1600000"^^xsd:int ;
+                   rdfs:comment "Città che si trova in Spagna" ;
+                   rdfs:label "Barcellona" .
+
+
+###  http://www.semanticweb.org/voyager#Chorizo
+voyager:Chorizo rdf:type owl:NamedIndividual ,
+                         voyager:SpanishFood ;
+                voyager:IsMadeIn :Spagna ;
+                voyager:Taste "Spicy"^^xsd:string .
+
+
+###  http://www.semanticweb.org/voyager#Dubrovnik
+voyager:Dubrovnik rdf:type owl:NamedIndividual ,
+                           voyager:City ;
+                  voyager:CityIsLocatedIn :Croazia ;
+                  voyager:Population "42000"^^xsd:int ;
+                  rdfs:comment "Città che si trova in Croazia" ;
+                  rdfs:label "Dubrovnick" .
+
+
+###  http://www.semanticweb.org/voyager#ElToro
+voyager:ElToro rdf:type owl:NamedIndividual ,
+                        voyager:Mountain ;
+               voyager:Height "350"^^xsd:int .
+
+
+###  http://www.semanticweb.org/voyager#Italia
+voyager:Italia rdf:type owl:NamedIndividual ,
+                        voyager:State ;
+               owl:sameAs <https://www.wikidata.org/wiki/Q38#Italy> ;
+               voyager:Does :Arancino ,
+                            :Carbonara ,
+                            :Pizza ;
+               voyager:HasCapital :Roma ;
+               voyager:HasDestination :Alpi ;
+               voyager:HasIsland :Capri ,
+                                 :Lipari ;
+               voyager:HasLake :Como ;
+               voyager:HasMountain :Alpi ,
+                                   voyager:Appennini ;
+               voyager:HasRiver :Po ;
+               voyager:HasSea :MarTirreno ;
+               rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+               rdfs:label "Italia"^^xsd:string .
+
+
+###  http://www.semanticweb.org/voyager#Marrakech
+voyager:Marrakech rdf:type owl:NamedIndividual ,
+                           voyager:City ;
+                  voyager:CityIsLocatedIn :Marocco ;
+                  voyager:Population "950000"^^xsd:int ;
+                  rdfs:comment "Città che si trova in Marocco" ;
+                  rdfs:label "Marrakech" .
+
+
+###  http://www.semanticweb.org/voyager#Milano
+voyager:Milano rdf:type owl:NamedIndividual ,
+                        voyager:City ;
+               voyager:CityIsLocatedIn voyager:Italia ;
+               voyager:Population "1500000"^^xsd:int ;
+               rdfs:comment "Città che si trova in Italia" ;
+               rdfs:label "Milano" .
+
+
+###  http://www.semanticweb.org/voyager#PatatasBravas
+voyager:PatatasBravas rdf:type owl:NamedIndividual ,
+                               voyager:SpanishFood ;
+                      voyager:IsMadeIn :Spagna ;
+                      voyager:Taste "Salty"^^xsd:string .
+
+
+###  http://www.semanticweb.org/voyager#Salonicco
+voyager:Salonicco rdf:type owl:NamedIndividual ,
+                           voyager:City ;
+                  voyager:CityIsLocatedIn :Grecia ;
+                  voyager:Population "350000"^^xsd:int ;
+                  rdfs:comment "Città che si trova in Grecia" ;
+                  rdfs:seeAlso "Salonicco" .
+
+
+###  http://www.semanticweb.org/voyager#Valona
+voyager:Valona rdf:type owl:NamedIndividual ,
+                        voyager:City ;
+               voyager:CityIsLocatedIn :Albania ;
+               voyager:Population "200000"^^xsd:int ;
+               rdfs:comment "Città che si trova in Albania" ;
+               rdfs:label "Valona" .
+
+
+###  https://www.wikidata.org/wiki/Q1028#Morocco
+<https://www.wikidata.org/wiki/Q1028#Morocco> rdf:type owl:NamedIndividual ,
+                                                       voyager:Country .
+
+
+###  https://www.wikidata.org/wiki/Q222#Albania
+<https://www.wikidata.org/wiki/Q222#Albania> rdf:type owl:NamedIndividual ,
+                                                      voyager:Country .
+
+
+###  https://www.wikidata.org/wiki/Q224#Croatia
+<https://www.wikidata.org/wiki/Q224#Croatia> rdf:type owl:NamedIndividual ,
+                                                      voyager:Country .
+
+
+###  https://www.wikidata.org/wiki/Q29#Spain
+<https://www.wikidata.org/wiki/Q29#Spain> rdf:type owl:NamedIndividual ,
+                                                   voyager:Country .
+
+
+###  https://www.wikidata.org/wiki/Q38#Italy
+<https://www.wikidata.org/wiki/Q38#Italy> rdf:type owl:NamedIndividual ,
+                                                   voyager:Country ;
+                                          rdfs:label "Italia" .
+
+
+###  https://www.wikidata.org/wiki/Q41#Greece
+<https://www.wikidata.org/wiki/Q41#Greece> rdf:type owl:NamedIndividual ,
+                                                    voyager:Country .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( voyager:BalkanCuisine
+                voyager:IberianCuisine
+                voyager:ItalianFood
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( voyager:City
+                voyager:Island
+                voyager:Lake
+                voyager:Mountain
+                voyager:River
+                voyager:Sea
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( voyager:Destination
+                voyager:Food
+                voyager:Region
+              )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Albania
+                        :Croazia
+                        :Grecia
+                        :Marocco
+                        :Spagna
+                        voyager:Italia
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Atene
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Atene
+                        :Madrid
+                        :Rabat
+                        :Roma
+                        :Tirana
+                        :Zagabria
+                        voyager:Barcellona
+                        voyager:Dubrovnik
+                        voyager:Marrakech
+                        voyager:Milano
+                        voyager:Salonicco
+                        voyager:Valona
+                      )
+] .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+:c rdf:type swrl:Variable .
+
+:p rdf:type swrl:Variable .
+
+:i rdf:type swrl:Variable .
+
+:s rdf:type swrl:Variable .
+
+:t rdf:type swrl:Variable .
+
+:t1 rdf:type swrl:Variable .
+
+:t2 rdf:type swrl:Variable .
+
+:i1 rdf:type swrl:Variable .
+
+:i2 rdf:type swrl:Variable .
+
+:m rdf:type swrl:Variable .
+
+:l rdf:type swrl:Variable .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Se la nazione ha una montagna e la montagna ha un lago allora la nazione ha come destinazione il lago"^^xsd:string ;
+   rdfs:label "S4"^^xsd:string ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate voyager:Mountain ;
+                           swrl:argument1 :m
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate voyager:HasLake ;
+                                      swrl:argument1 :m ;
+                                      swrl:argument2 :l
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                 swrl:propertyPredicate voyager:HasMountain ;
+                                                 swrl:argument1 :s ;
+                                                 swrl:argument2 :m
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate voyager:State ;
+                                                            swrl:argument1 :s
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate voyager:Lake ;
+                                                                       swrl:argument1 :l
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate voyager:HasDestination ;
+                           swrl:argument1 :s ;
+                           swrl:argument2 :l
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Se un lago si trova in montagna allora è un lago di montagna"^^xsd:string ;
+   rdfs:label "S1"^^xsd:string ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate voyager:Mountain ;
+                           swrl:argument1 :m
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate voyager:HasLake ;
+                                      swrl:argument1 :m ;
+                                      swrl:argument2 :l
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate voyager:Lake ;
+                                                 swrl:argument1 :l
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate voyager:MountainLake ;
+                           swrl:argument1 :l
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Se la città ha una popolazione superiore al milione di abitanti allora è una metropoli"^^xsd:string ;
+   rdfs:label "S3"^^xsd:string ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate voyager:City ;
+                           swrl:argument1 :c
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                      swrl:builtin swrlb:greaterThan ;
+                                      swrl:arguments [ rdf:type rdf:List ;
+                                                       rdf:first :p ;
+                                                       rdf:rest [ rdf:type rdf:List ;
+                                                                  rdf:first 1000000 ;
+                                                                  rdf:rest rdf:nil
+                                                                ]
+                                                     ]
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate voyager:Population ;
+                                                 swrl:argument1 :c ;
+                                                 swrl:argument2 :p
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate voyager:Metropolis ;
+                           swrl:argument1 :c
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Se lo stato contiene un'isola con molti turisti allora lo stato ha un'isola popolare"^^xsd:string ;
+   rdfs:label "S2"^^xsd:string ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate voyager:Island ;
+                           swrl:argument1 :i
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate voyager:HasIsland ;
+                                      swrl:argument1 :s ;
+                                      swrl:argument2 :i
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate voyager:State ;
+                                                 swrl:argument1 :s
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                            swrl:builtin swrlb:greaterThan ;
+                                                            swrl:arguments [ rdf:type rdf:List ;
+                                                                             rdf:first :t ;
+                                                                             rdf:rest [ rdf:type rdf:List ;
+                                                                                        rdf:first 100000 ;
+                                                                                        rdf:rest rdf:nil
+                                                                                      ]
+                                                                           ]
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                       swrl:propertyPredicate voyager:NumTourists ;
+                                                                       swrl:argument1 :i ;
+                                                                       swrl:argument2 :t
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate voyager:HasPopularIsland ;
+                           swrl:argument1 :s ;
+                           swrl:argument2 :i
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "Se il numero di turisti della prima isola è più grande del numero di turisti della seconda isola allora inferiamo che Isola1 ha più turisti di Isola2"^^xsd:string ;
+   rdfs:label "S5"^^xsd:string ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:BuiltinAtom ;
+                           swrl:builtin swrlb:greaterThan ;
+                           swrl:arguments ( :t1
+                                            :t2
+                                          )
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate voyager:Island ;
+                                      swrl:argument1 :i1
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                 swrl:propertyPredicate voyager:NumTourists ;
+                                                 swrl:argument1 :i1 ;
+                                                 swrl:argument2 :t1
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                            swrl:propertyPredicate voyager:NumTourists ;
+                                                            swrl:argument1 :i2 ;
+                                                            swrl:argument2 :t2
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate voyager:Island ;
+                                                                       swrl:argument1 :i2
+                                                                     ] ;
+                                                           rdf:rest rdf:nil
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate voyager:HasMoreTourist ;
+                           swrl:argument1 :i1 ;
+                           swrl:argument2 :i2
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

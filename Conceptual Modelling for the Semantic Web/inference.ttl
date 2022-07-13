@@ -1,0 +1,1997 @@
+@prefix : <http://www.semanticweb.org/voyager#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/voyager> .
+
+<http://www.semanticweb.org/voyager> rdf:type owl:Ontology ;
+                                      <http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespacePrefix> "voyager" ;
+                                      <http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespaceUri> "http://www.semanticweb.org/voyager" ;
+                                      <http://purl.org/dc/elements/1.1/creator> "Antonino Bushaj" ;
+                                      <http://purl.org/dc/elements/1.1/date> "2022-06-07" ;
+                                      <http://purl.org/dc/elements/1.1/description> "Voyager è un'ontologia per la rappresentazione e l'esposizione di mete turistiche specifiche per varie localita del mondo, con particolare attenzione all'area del Mediterraneo" ;
+                                      <http://purl.org/dc/elements/1.1/title> "Voyager- il viaggio" ;
+                                      <http://purl.org/dc/terms/license> "https://opensource.org/licenses/mit-license.php/" ;
+                                      rdfs:label "Voyager" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespacePrefix
+<http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespaceUri
+<http://aims.fao.org/aos/agrovoc/c_32502#vann:preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl#HasPart
+<http://www.ontologydesignpatterns.org/cp/owl/partof.owl#HasPart> rdf:type owl:ObjectProperty ;
+                                                                  owl:inverseOf <http://www.ontologydesignpatterns.org/cp/owl/partof.owl_#IsPartOf> ;
+                                                                  rdf:type owl:TransitiveProperty ;
+                                                                  rdfs:domain :GeographicEntity ;
+                                                                  rdfs:range :GeographicEntity ;
+                                                                  rdfs:comment "Indica che un'entità geografica ha annessa a se un'entità minore" ;
+                                                                  rdfs:label "HasPart" .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/partof.owl_#IsPartOf
+<http://www.ontologydesignpatterns.org/cp/owl/partof.owl_#IsPartOf> rdf:type owl:ObjectProperty ,
+                                                                             owl:TransitiveProperty ;
+                                                                    rdfs:domain :GeographicEntity ;
+                                                                    rdfs:range :GeographicEntity ;
+                                                                    rdfs:comment "Indica che un entità geografica fa parte di un entità più grande" ;
+                                                                    rdfs:label "IsPartOf" .
+
+
+###  http://www.semanticweb.org/voyager#CityIsLocatedIn
+:CityIsLocatedIn rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :HasCity ;
+                 rdfs:domain :City ;
+                 rdfs:range :State ;
+                 rdfs:comment "Una città è localizzata in una determinata regione" ;
+                 rdfs:label "CityIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#ContainsFood
+:ContainsFood rdf:type owl:ObjectProperty ;
+              owl:inverseOf :FoodIsContained ;
+              rdf:type owl:TransitiveProperty ;
+              rdfs:domain :Food ;
+              rdfs:range :Food ;
+              rdfs:comment "Indica che un tipo di cucina contiene dei piatti specifici" ;
+              rdfs:label "ContainsFood" .
+
+
+###  http://www.semanticweb.org/voyager#Does
+:Does rdf:type owl:ObjectProperty ;
+      owl:inverseOf :IsMadeIn ;
+      rdfs:domain :State ;
+      rdfs:range :Food ;
+      rdfs:comment "Indica che uno stato prepara un particolare piatto tipico" ;
+      rdfs:label "Does" .
+
+
+###  http://www.semanticweb.org/voyager#FoodIsContained
+:FoodIsContained rdf:type owl:ObjectProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Food ;
+                 rdfs:range :Food ;
+                 rdfs:comment "Un cibo è prodotto in una regione" ;
+                 rdfs:label "FoodIsContained" .
+
+
+###  http://www.semanticweb.org/voyager#HasCapital
+:HasCapital rdf:type owl:ObjectProperty ;
+            owl:inverseOf :IsCapitalOf ;
+            rdfs:domain :State ;
+            rdfs:range :City ;
+            rdfs:comment "Indica che una nazione ha quella capitale" ;
+            rdfs:label "HasCapital" .
+
+
+###  http://www.semanticweb.org/voyager#HasCity
+:HasCity rdf:type owl:ObjectProperty ;
+         rdfs:domain :State ;
+         rdfs:range :City ;
+         rdfs:comment "Una nazione contiene quella città" ;
+         rdfs:label "HasCity" .
+
+
+###  http://www.semanticweb.org/voyager#HasDestination
+:HasDestination rdf:type owl:ObjectProperty ,
+                         owl:AsymmetricProperty ,
+                         owl:IrreflexiveProperty ;
+                rdfs:domain :State ;
+                rdfs:range :Destination ;
+                owl:propertyChainAxiom ( :HasMountain
+                                         :HasLake
+                                       ) ;
+                rdfs:comment "Una nazione ha una determinata destinazione" ;
+                rdfs:label "HasDestination" .
+
+
+###  http://www.semanticweb.org/voyager#HasIsland
+:HasIsland rdf:type owl:ObjectProperty ;
+           owl:inverseOf :IslandIsLocatedIn ;
+           rdfs:domain :State ;
+           rdfs:range :Island ;
+           rdfs:comment "Indica che uno stato contiente un'isola" ;
+           rdfs:label "HasIsland" .
+
+
+###  http://www.semanticweb.org/voyager#HasLake
+:HasLake rdf:type owl:ObjectProperty ;
+         owl:inverseOf :LakeIsLocatedIn ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Mountain
+                                     :State
+                                   )
+                     ] ;
+         rdfs:range :Lake ;
+         rdfs:comment "Indica che una nazione contiene un lago" ;
+         rdfs:label "HasLake" .
+
+
+###  http://www.semanticweb.org/voyager#HasLessTourist
+:HasLessTourist rdf:type owl:ObjectProperty ;
+                owl:inverseOf :HasMoreTourist ;
+                rdfs:domain :Island ;
+                rdfs:range :Island ;
+                rdfs:comment "Un'isola contiene meno turisti di un'altra isola" ;
+                rdfs:label "HasLessTourist" .
+
+
+###  http://www.semanticweb.org/voyager#HasMoreTourist
+:HasMoreTourist rdf:type owl:ObjectProperty ;
+                rdfs:domain :Island ;
+                rdfs:range :Island ;
+                rdfs:comment "Un'isola contiene più turisti di un'altra isola" ;
+                rdfs:label "HasMoreTourist" .
+
+
+###  http://www.semanticweb.org/voyager#HasMountain
+:HasMountain rdf:type owl:ObjectProperty ;
+             owl:inverseOf :MountainIsLocatedIn ;
+             rdfs:domain :State ;
+             rdfs:range :Mountain ;
+             rdfs:comment "Indica che uno stato contiene una catena montuosa" ;
+             rdfs:label "HasMountain" .
+
+
+###  http://www.semanticweb.org/voyager#HasPopularIsland
+:HasPopularIsland rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :HasIsland ;
+                  rdfs:domain :State ;
+                  rdfs:range :Island ;
+                  rdfs:comment "Uno stato contiene un'isola popolare" ;
+                  rdfs:label "HasPopularIsland" .
+
+
+###  http://www.semanticweb.org/voyager#HasRiver
+:HasRiver rdf:type owl:ObjectProperty ;
+          owl:inverseOf :RiverIsLocatedIn ;
+          rdfs:domain :State ;
+          rdfs:range :River ;
+          rdfs:comment "Indica che una nazione contiene un fiume" ;
+          rdfs:label "HasRiver" .
+
+
+###  http://www.semanticweb.org/voyager#HasSea
+:HasSea rdf:type owl:ObjectProperty ;
+        owl:inverseOf :SeaIsLocatedIn ;
+        rdfs:domain :State ;
+        rdfs:range :Sea ;
+        rdfs:comment "Indica che una nazione sfocia su un determinato mare" ;
+        rdfs:label "HasSea" .
+
+
+###  http://www.semanticweb.org/voyager#IsCapitalOf
+:IsCapitalOf rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :City ;
+             rdfs:range :State ;
+             rdfs:comment "Indica che la citta è capitale di una determinata nazione" ;
+             rdfs:label "IsCapitalOf" .
+
+
+###  http://www.semanticweb.org/voyager#IsMadeIn
+:IsMadeIn rdf:type owl:ObjectProperty ;
+          rdfs:domain :Food ;
+          rdfs:range :State ;
+          rdfs:comment "Indica che un determinato cibo è prodotto in quello stato" ;
+          rdfs:label "IsMadeIn" .
+
+
+###  http://www.semanticweb.org/voyager#IslandIsLocatedIn
+:IslandIsLocatedIn rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Island ;
+                   rdfs:range :State ;
+                   rdfs:comment "Indica che un'isola è localizzata in un determinato luogo" ;
+                   rdfs:label "IslandIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#LakeIsLocatedIn
+:LakeIsLocatedIn rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Lake ;
+                 rdfs:range [ rdf:type owl:Class ;
+                              owl:unionOf ( :Mountain
+                                            :State
+                                          )
+                            ] ;
+                 rdfs:comment "Indica che un lago è localizzato in un determinato luogo" ;
+                 rdfs:label "LakeIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#MountainIsLocatedIn
+:MountainIsLocatedIn rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Mountain ;
+                     rdfs:range :State ;
+                     rdfs:comment "Indica che una montagna è localizzata in un determinato luogo" ;
+                     rdfs:label "MountainIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#RiverIsLocatedIn
+:RiverIsLocatedIn rdf:type owl:ObjectProperty ;
+                  rdfs:domain :River ;
+                  rdfs:range :State ;
+                  rdfs:comment "Indica che un fiume è localizzato in un determinato luogo" ;
+                  rdfs:label "RiverIsLocatedIn" .
+
+
+###  http://www.semanticweb.org/voyager#SeaIsLocatedIn
+:SeaIsLocatedIn rdf:type owl:ObjectProperty ;
+                rdfs:domain :Sea ;
+                rdfs:range :State ;
+                rdfs:comment "Indica che un mare è localizzato in un determinato luogo" ;
+                rdfs:label "SeaIsLocatedIn" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/voyager#Height
+:Height rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Mountain ;
+        rdfs:range xsd:integer ;
+        rdfs:comment "Altezza massima di una catena montuosa" ;
+        rdfs:label "Height" .
+
+
+###  http://www.semanticweb.org/voyager#Length
+:Length rdf:type owl:DatatypeProperty ;
+        rdfs:domain :River ;
+        rdfs:range xsd:integer ;
+        rdfs:comment "Lunghezza massima di un fiume" ;
+        rdfs:label "Lenght"@en .
+
+
+###  http://www.semanticweb.org/voyager#NumTourists
+:NumTourists rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Island ;
+             rdfs:range xsd:integer ;
+             rdfs:comment "Numero di turisti che un'isola ha annualmente" ;
+             rdfs:label "NumTourists" .
+
+
+###  http://www.semanticweb.org/voyager#Population
+:Population rdf:type owl:DatatypeProperty ;
+            rdfs:domain :City ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "Popolazione di una Nazione" ;
+            rdfs:label "Population"@en .
+
+
+###  http://www.semanticweb.org/voyager#Taste
+:Taste rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Food ;
+       rdfs:range xsd:string ;
+       rdfs:comment "Indica il gusto di un particolare piatto, se dolce o salato" ;
+       rdfs:label "Taste" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts
+<http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts> ;
+                                                              owl:disjointWith :CaribbeanState ,
+                                                                               :City ,
+                                                                               :Country ,
+                                                                               :Destination ,
+                                                                               :GeographicEntity ,
+                                                                               :Island ,
+                                                                               :Lake ,
+                                                                               :MediterraneanState ,
+                                                                               :Metropolis ,
+                                                                               :Mountain ,
+                                                                               :MountainLake ,
+                                                                               :Region ,
+                                                                               :River ,
+                                                                               :Sea ,
+                                                                               :State ;
+                                                              rdfs:comment "Prodotti agricoli fuori stagione dello stato specificato" ;
+                                                              rdfs:label "OutOfSeasonProducts" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_32501#OutOfSeasonFruits
+<http://aims.fao.org/aos/agrovoc/c_32501#OutOfSeasonFruits> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts> ;
+                                                            owl:disjointWith :CaribbeanState ,
+                                                                             :City ,
+                                                                             :Country ,
+                                                                             :Destination ,
+                                                                             :GeographicEntity ,
+                                                                             :Island ,
+                                                                             :Lake ,
+                                                                             :MediterraneanState ,
+                                                                             :Metropolis ,
+                                                                             :Mountain ,
+                                                                             :MountainLake ,
+                                                                             :Region ,
+                                                                             :River ,
+                                                                             :Sea ,
+                                                                             :State ;
+                                                            rdfs:comment "Prodotti fruttiferi fuori stagione dello stato specificato" ;
+                                                            rdfs:label "OutOfSeasonFruits" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_32502#OutOfSeasonVegetables
+<http://aims.fao.org/aos/agrovoc/c_32502#OutOfSeasonVegetables> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_32499#OutOfSeasonProducts> ;
+                                                                owl:disjointWith :CaribbeanState ,
+                                                                                 :City ,
+                                                                                 :Country ,
+                                                                                 :Destination ,
+                                                                                 :GeographicEntity ,
+                                                                                 :Island ,
+                                                                                 :Lake ,
+                                                                                 :MediterraneanState ,
+                                                                                 :Metropolis ,
+                                                                                 :Mountain ,
+                                                                                 :MountainLake ,
+                                                                                 :Region ,
+                                                                                 :River ,
+                                                                                 :Sea ,
+                                                                                 :State ;
+                                                                rdfs:comment "Prodotti vegetali fuori stagione dello stato specificato" ;
+                                                                rdfs:label "OutOfSeasonVegetables" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_36642#Bioproducts
+<http://aims.fao.org/aos/agrovoc/c_36642#Bioproducts> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts> ;
+                                                      owl:disjointWith :CaribbeanState ,
+                                                                       :City ,
+                                                                       :Country ,
+                                                                       :Destination ,
+                                                                       :GeographicEntity ,
+                                                                       :Island ,
+                                                                       :Lake ,
+                                                                       :MediterraneanState ,
+                                                                       :Metropolis ,
+                                                                       :Mountain ,
+                                                                       :MountainLake ,
+                                                                       :Region ,
+                                                                       :River ,
+                                                                       :Sea ,
+                                                                       :State ;
+                                                      rdfs:comment "Bioprodotti specifici dello stato indicato" ;
+                                                      rdfs:label "Bioproducts" .
+
+
+###  http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts
+<http://aims.fao.org/aos/agrovoc/c_8678#AgriculturalProducts> rdf:type owl:Class ;
+                                                              rdfs:subClassOf :Food ;
+                                                              owl:disjointWith :CaribbeanState ,
+                                                                               :City ,
+                                                                               :Country ,
+                                                                               :Destination ,
+                                                                               :GeographicEntity ,
+                                                                               :Island ,
+                                                                               :Lake ,
+                                                                               :MediterraneanState ,
+                                                                               :Metropolis ,
+                                                                               :Mountain ,
+                                                                               :MountainLake ,
+                                                                               :Region ,
+                                                                               :River ,
+                                                                               :Sea ,
+                                                                               :State ;
+                                                              rdfs:comment "Prodotti agricoli dello stato specificato" ;
+                                                              rdfs:label "AgriculturalProducts" .
+
+
+###  http://www.semanticweb.org/voyager#BalkanCuisine
+:BalkanCuisine rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty :ContainsFood ;
+                                     owl:someValuesFrom :GreekFood
+                                   ] ;
+               rdfs:subClassOf :Food ;
+               owl:disjointWith :CaribbeanState ,
+                                :City ,
+                                :Country ,
+                                :Destination ,
+                                :GeographicEntity ,
+                                :IberianCuisine ,
+                                :Island ,
+                                :ItalianFood ,
+                                :Lake ,
+                                :MediterraneanState ,
+                                :Metropolis ,
+                                :Mountain ,
+                                :MountainLake ,
+                                :Region ,
+                                :River ,
+                                :Sea ,
+                                :SpanishFood ,
+                                :State ;
+               rdfs:comment "Cibi balcanici" ;
+               rdfs:label "BalkanCuisine" .
+
+
+###  http://www.semanticweb.org/voyager#CaribbeanState
+:CaribbeanState rdf:type owl:Class ;
+                rdfs:subClassOf :Region ;
+                owl:disjointWith :City ,
+                                 :Destination ,
+                                 :Food ,
+                                 :GreekFood ,
+                                 :IberianCuisine ,
+                                 :Island ,
+                                 :ItalianFood ,
+                                 :Lake ,
+                                 :Metropolis ,
+                                 :Mountain ,
+                                 :MountainLake ,
+                                 :River ,
+                                 :Sea ,
+                                 :SpanishFood ;
+                rdfs:comment "Stati che si affacciano sul Mar dei Caraibi" ;
+                rdfs:label "CaribbeanState" .
+
+
+###  http://www.semanticweb.org/voyager#City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf :Destination ;
+      owl:disjointWith :Country ,
+                       :Food ,
+                       :GreekFood ,
+                       :IberianCuisine ,
+                       :Island ,
+                       :ItalianFood ,
+                       :Lake ,
+                       :MediterraneanState ,
+                       :Mountain ,
+                       :MountainLake ,
+                       :Region ,
+                       :River ,
+                       :Sea ,
+                       :SpanishFood ,
+                       :State ;
+      rdfs:comment "Città situate in stati che si affacciano sul Mediterraneo" ;
+      rdfs:label "City" .
+
+
+###  http://www.semanticweb.org/voyager#Country
+:Country rdf:type owl:Class ;
+         owl:equivalentClass :State ;
+         rdfs:subClassOf :MediterraneanState ;
+         owl:disjointWith :Destination ,
+                          :Food ,
+                          :GreekFood ,
+                          :IberianCuisine ,
+                          :Island ,
+                          :ItalianFood ,
+                          :Lake ,
+                          :Metropolis ,
+                          :Mountain ,
+                          :MountainLake ,
+                          :River ,
+                          :Sea ,
+                          :SpanishFood ;
+         rdfs:comment "Nazioni presenti nell'ontologia, allineati tramite Wikidata" ;
+         rdfs:label "Country" .
+
+
+###  http://www.semanticweb.org/voyager#Destination
+:Destination rdf:type owl:Class ;
+             rdfs:subClassOf :GeographicEntity ;
+             owl:disjointWith :Food ,
+                              :GreekFood ,
+                              :IberianCuisine ,
+                              :ItalianFood ,
+                              :MediterraneanState ,
+                              :Region ,
+                              :SpanishFood ,
+                              :State ;
+             owl:disjointUnionOf ( :City
+                                   :Island
+                                   :Lake
+                                   :Mountain
+                                   :River
+                                   :Sea
+                                 ) ;
+             rdfs:comment "Destinazioni turistiche" ;
+             rdfs:label "Destination" .
+
+
+###  http://www.semanticweb.org/voyager#Food
+:Food rdf:type owl:Class ;
+      owl:disjointWith :GeographicEntity ,
+                       :Island ,
+                       :Lake ,
+                       :MediterraneanState ,
+                       :Metropolis ,
+                       :Mountain ,
+                       :MountainLake ,
+                       :Region ,
+                       :River ,
+                       :Sea ,
+                       :State ;
+      owl:disjointUnionOf ( :BalkanCuisine
+                            :IberianCuisine
+                            :ItalianFood
+                          ) ;
+      rdfs:comment "Cibi preparati nei vari stati" ;
+      rdfs:label "Food" .
+
+
+###  http://www.semanticweb.org/voyager#GeographicEntity
+:GeographicEntity rdf:type owl:Class ;
+                  owl:disjointWith :GreekFood ,
+                                   :IberianCuisine ,
+                                   :ItalianFood ,
+                                   :SpanishFood ;
+                  rdfs:comment "Entità geografica generica che può rappresentare qualsiasi località" ;
+                  rdfs:label "GeographicEntity" .
+
+
+###  http://www.semanticweb.org/voyager#GreekFood
+:GreekFood rdf:type owl:Class ;
+           rdfs:subClassOf :BalkanCuisine ;
+           owl:disjointWith :IberianCuisine ,
+                            :Island ,
+                            :ItalianFood ,
+                            :Lake ,
+                            :MediterraneanState ,
+                            :Metropolis ,
+                            :Mountain ,
+                            :MountainLake ,
+                            :Region ,
+                            :River ,
+                            :Sea ,
+                            :SpanishFood ,
+                            :State ;
+           rdfs:comment "Cibi preparati in Grecia" ;
+           rdfs:label "GreekFood" .
+
+
+###  http://www.semanticweb.org/voyager#IberianCuisine
+:IberianCuisine rdf:type owl:Class ;
+                rdfs:subClassOf :Food ;
+                owl:disjointWith :Island ,
+                                 :ItalianFood ,
+                                 :Lake ,
+                                 :MediterraneanState ,
+                                 :Metropolis ,
+                                 :Mountain ,
+                                 :MountainLake ,
+                                 :Region ,
+                                 :River ,
+                                 :Sea ,
+                                 :State ;
+                rdfs:comment "Cibi iberici" ;
+                rdfs:label "IberianCuisine" .
+
+
+###  http://www.semanticweb.org/voyager#Island
+:Island rdf:type owl:Class ;
+        rdfs:subClassOf :Destination ;
+        owl:disjointWith :ItalianFood ,
+                         :Lake ,
+                         :MediterraneanState ,
+                         :Metropolis ,
+                         :Mountain ,
+                         :MountainLake ,
+                         :Region ,
+                         :River ,
+                         :Sea ,
+                         :SpanishFood ,
+                         :State ;
+        rdfs:comment "Isole situate in stati che si affacciano sul Mediterraneo" ;
+        rdfs:label "Island" .
+
+
+###  http://www.semanticweb.org/voyager#ItalianFood
+:ItalianFood rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Class ;
+                                   owl:oneOf ( <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Arancino>
+                                               <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Carbonara>
+                                               <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Pizza>
+                                             )
+                                 ] ;
+             rdfs:subClassOf :Food ;
+             owl:disjointWith :Lake ,
+                              :MediterraneanState ,
+                              :Metropolis ,
+                              :Mountain ,
+                              :MountainLake ,
+                              :Region ,
+                              :River ,
+                              :Sea ,
+                              :SpanishFood ,
+                              :State ;
+             rdfs:comment "Cibi preparati in Italia" ;
+             rdfs:label "ItalianFood" .
+
+
+###  http://www.semanticweb.org/voyager#Lake
+:Lake rdf:type owl:Class ;
+      rdfs:subClassOf :Destination ;
+      owl:disjointWith :MediterraneanState ,
+                       :Metropolis ,
+                       :Mountain ,
+                       :Region ,
+                       :River ,
+                       :Sea ,
+                       :SpanishFood ,
+                       :State ;
+      rdfs:comment "Laghi situati in stati che si affacciano sul Mediterraneo" ;
+      rdfs:label "Lake" .
+
+
+###  http://www.semanticweb.org/voyager#MediterraneanState
+:MediterraneanState rdf:type owl:Class ;
+                    rdfs:subClassOf :Region ;
+                    owl:disjointWith :Metropolis ,
+                                     :Mountain ,
+                                     :MountainLake ,
+                                     :River ,
+                                     :Sea ,
+                                     :SpanishFood ;
+                    rdfs:comment "Stati che si affacciano sul Mediterraneo" ;
+                    rdfs:label "MediterraneanState" .
+
+
+###  http://www.semanticweb.org/voyager#Metropolis
+:Metropolis rdf:type owl:Class ;
+            rdfs:subClassOf :City ;
+            owl:disjointWith :Mountain ,
+                             :MountainLake ,
+                             :Region ,
+                             :River ,
+                             :Sea ,
+                             :SpanishFood ,
+                             :State ;
+            rdfs:comment "Città metropolitane con una popolazione maggiore rispetto ad una città normale" ;
+            rdfs:label "Metropolis" .
+
+
+###  http://www.semanticweb.org/voyager#Mountain
+:Mountain rdf:type owl:Class ;
+          rdfs:subClassOf :Destination ;
+          owl:disjointWith :MountainLake ,
+                           :Region ,
+                           :River ,
+                           :Sea ,
+                           :SpanishFood ,
+                           :State ;
+          rdfs:comment "Montagne situate in stati che si affacciano sul Mediterraneo" ;
+          rdfs:label "Mountain" .
+
+
+###  http://www.semanticweb.org/voyager#MountainLake
+:MountainLake rdf:type owl:Class ;
+              rdfs:subClassOf :Lake ;
+              owl:disjointWith :Region ,
+                               :River ,
+                               :Sea ,
+                               :SpanishFood ,
+                               :State ;
+              rdfs:comment "Laghi che si trovano situati in montagna" ;
+              rdfs:label "MountainLake" .
+
+
+###  http://www.semanticweb.org/voyager#Region
+:Region rdf:type owl:Class ;
+        rdfs:subClassOf :GeographicEntity ;
+        owl:disjointWith :River ,
+                         :Sea ,
+                         :SpanishFood ;
+        rdfs:comment "Classe di luoghi che contengono le localita turistiche" ;
+        rdfs:label "Region" .
+
+
+###  http://www.semanticweb.org/voyager#River
+:River rdf:type owl:Class ;
+       rdfs:subClassOf :Destination ;
+       owl:disjointWith :Sea ,
+                        :SpanishFood ,
+                        :State ;
+       rdfs:comment "Fiumi situati in stati che si affacciano sul Mediterraneo" ;
+       rdfs:label "River" .
+
+
+###  http://www.semanticweb.org/voyager#Sea
+:Sea rdf:type owl:Class ;
+     rdfs:subClassOf :Destination ;
+     owl:disjointWith :SpanishFood ,
+                      :State ;
+     rdfs:comment "Mari situati in stati che si affacciano sul Mediterraneo" ;
+     rdfs:label "Sea" .
+
+
+###  http://www.semanticweb.org/voyager#SpanishFood
+:SpanishFood rdf:type owl:Class ;
+             rdfs:subClassOf :IberianCuisine ;
+             owl:disjointWith :State ;
+             rdfs:comment "Cibi preparati in Spagna" ;
+             rdfs:label "SpanishFood" .
+
+
+###  http://www.semanticweb.org/voyager#State
+:State rdf:type owl:Class ;
+       owl:equivalentClass [ rdf:type owl:Restriction ;
+                             owl:onProperty :Does ;
+                             owl:someValuesFrom :Food
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :HasCapital ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :City
+                           ] ;
+       rdfs:subClassOf :MediterraneanState ;
+       rdfs:comment "Stati che si affacciano sul mediterraneo" ;
+       rdfs:label "State" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Afella
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Afella> rdf:type owl:NamedIndividual ,
+                                                                                                  :Destination ,
+                                                                                                  :GeographicEntity ,
+                                                                                                  :Mountain ;
+                                                                                         :MountainIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> ,
+                                                                                                              <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+                                                                                         :Height 4043 ;
+                                                                                         rdfs:comment "Catena montuosa che si trova in Marocco" ;
+                                                                                         rdfs:label "Afella" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> rdf:type owl:NamedIndividual ,
+                                                                                                   :Country ,
+                                                                                                   :GeographicEntity ,
+                                                                                                   :MediterraneanState ,
+                                                                                                   :Region ,
+                                                                                                   :State ;
+                                                                                          owl:sameAs <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                          <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#HasPart> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt> ,
+                                                                                                                                                            <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid> ;
+                                                                                          :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tirana> ;
+                                                                                          :HasCity :Valona ;
+                                                                                          :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid> ;
+                                                                                          :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt> ;
+                                                                                          :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Vjosa> ;
+                                                                                          :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarIonio> ;
+                                                                                          rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+                                                                                          rdfs:label "Albania" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi> rdf:type owl:NamedIndividual ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :Mountain ;
+                                                                                       :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como> ;
+                                                                                       :MountainIsLocatedIn :Italia ,
+                                                                                                            <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                       :Height 4809 ;
+                                                                                       rdfs:comment "catena montuosa che si trova in Italia" ;
+                                                                                       rdfs:label "Alpi" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Arancino
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Arancino> rdf:type owl:NamedIndividual ,
+                                                                                                    :Food ,
+                                                                                                    :ItalianFood ;
+                                                                                           :IsMadeIn :Italia ,
+                                                                                                     <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                           :Taste "salty"^^xsd:string ;
+                                                                                           rdfs:comment "Cibo preparato in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Atene
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Atene> rdf:type owl:NamedIndividual ,
+                                                                                                 :City ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :Metropolis ;
+                                                                                        :IsCapitalOf <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                     <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                        :Population 5000000 ;
+                                                                                        rdfs:comment "Capitale della Grecia" ;
+                                                                                        rdfs:label "Atene" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Baklava
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Baklava> rdf:type owl:NamedIndividual ,
+                                                                                                   :BalkanCuisine ,
+                                                                                                   :Food ,
+                                                                                                   :GreekFood ;
+                                                                                          :IsMadeIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                    <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                          :Taste "sweet"^^xsd:string ;
+                                                                                          rdfs:comment "Cibo preparato in Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> rdf:type owl:NamedIndividual ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :Island ;
+                                                                                        :HasLessTourist <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> ;
+                                                                                        :HasMoreTourist <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> ,
+                                                                                                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> ;
+                                                                                        :IslandIsLocatedIn :Italia ,
+                                                                                                           <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                        :NumTourists 1000000 ;
+                                                                                        rdfs:comment "Isola che si trova in Italia" ;
+                                                                                        rdfs:label "Capri" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Carbonara
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Carbonara> rdf:type owl:NamedIndividual ,
+                                                                                                     :Food ,
+                                                                                                     :ItalianFood ;
+                                                                                            :IsMadeIn :Italia ,
+                                                                                                      <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                            :Taste "salty"^^xsd:string ;
+                                                                                            rdfs:comment "Cibo preparato in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como> rdf:type owl:NamedIndividual ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :Lake ,
+                                                                                                :MountainLake ;
+                                                                                       :LakeIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi> ,
+                                                                                                        :Italia ,
+                                                                                                        <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                       rdfs:comment "Lago che si trova in Italia" ;
+                                                                                       rdfs:label "Como" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> rdf:type owl:NamedIndividual ,
+                                                                                                   :Country ,
+                                                                                                   :GeographicEntity ,
+                                                                                                   :MediterraneanState ,
+                                                                                                   :Region ,
+                                                                                                   :State ;
+                                                                                          owl:sameAs <https://www.wikidata.org/wiki/Q224#Croatia> ;
+                                                                                          :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Zagabria> ;
+                                                                                          :HasCity :Dubrovnik ;
+                                                                                          :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lissa> ;
+                                                                                          :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jezero> ;
+                                                                                          :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dinara> ;
+                                                                                          :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Danubio> ;
+                                                                                          :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarAdriatico> ;
+                                                                                          rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+                                                                                          rdfs:label "Croazia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt> rdf:type owl:NamedIndividual ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :Mountain ;
+                                                                                       <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#HasPart> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid> ;
+                                                                                       <http://www.ontologydesignpatterns.org/cp/owl/partof.owl_#IsPartOf> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                                                                                                                                                           <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                       :MountainIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                                                                                                            <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                       :Height 1613 ;
+                                                                                       rdfs:comment "Catena montuosa che si trova in Albania" ;
+                                                                                       rdfs:label "Dajt" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Danubio
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Danubio> rdf:type owl:NamedIndividual ,
+                                                                                                   :Destination ,
+                                                                                                   :GeographicEntity ,
+                                                                                                   :River ;
+                                                                                          :RiverIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> ,
+                                                                                                            <https://www.wikidata.org/wiki/Q224#Croatia> ;
+                                                                                          :Length 2850 ;
+                                                                                          rdfs:comment "Fiume che si trova in Croazia" ;
+                                                                                          rdfs:label "Danubio" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dinara
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dinara> rdf:type owl:NamedIndividual ,
+                                                                                                  :Destination ,
+                                                                                                  :GeographicEntity ,
+                                                                                                  :Mountain ;
+                                                                                         :MountainIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> ,
+                                                                                                              <https://www.wikidata.org/wiki/Q224#Croatia> ;
+                                                                                         :Height 1913 ;
+                                                                                         rdfs:comment "Catena montuosa che si trova in Croazia" ;
+                                                                                         rdfs:label "Dinara" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Draa
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Draa> rdf:type owl:NamedIndividual ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :River ;
+                                                                                       :RiverIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> ,
+                                                                                                         <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+                                                                                       :Length 1100 ;
+                                                                                       rdfs:comment "Fiume che si trova in Marocco" ;
+                                                                                       rdfs:label "Draa" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Enos
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Enos> rdf:type owl:NamedIndividual ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :Mountain ;
+                                                                                       :MountainIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                            <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                       :Height 1628 ;
+                                                                                       rdfs:comment "Catena montuosa che si trova in Grecia" ;
+                                                                                       rdfs:label "Enos" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Evros
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Evros> rdf:type owl:NamedIndividual ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :River ;
+                                                                                        :RiverIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                          <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                        :Length 480 ;
+                                                                                        rdfs:comment "Fiume che si trova in Grecia" ;
+                                                                                        rdfs:label "Evros" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Feta
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Feta> rdf:type owl:NamedIndividual ,
+                                                                                                :BalkanCuisine ,
+                                                                                                :Food ,
+                                                                                                :GreekFood ;
+                                                                                       :IsMadeIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                 <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                       :Taste "salty"^^xsd:string ;
+                                                                                       rdfs:comment "Cibo preparato in Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Formentera
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Formentera> rdf:type owl:NamedIndividual ,
+                                                                                                      :Destination ,
+                                                                                                      :GeographicEntity ,
+                                                                                                      :Island ;
+                                                                                             :IslandIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                                <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                             rdfs:comment "Isola che si trova in Spagna" ;
+                                                                                             rdfs:label "Formentera" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> rdf:type owl:NamedIndividual ,
+                                                                                                  :Country ,
+                                                                                                  :GeographicEntity ,
+                                                                                                  :MediterraneanState ,
+                                                                                                  :Region ,
+                                                                                                  :State ;
+                                                                                         owl:sameAs <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                         :Does <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Baklava> ,
+                                                                                               <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Feta> ;
+                                                                                         :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Atene> ;
+                                                                                         :HasCity :Salonicco ;
+                                                                                         :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> ,
+                                                                                                    <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> ;
+                                                                                         :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Plastiras> ;
+                                                                                         :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Enos> ;
+                                                                                         :HasPopularIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> ,
+                                                                                                           <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> ;
+                                                                                         :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Evros> ;
+                                                                                         :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarEgeo> ;
+                                                                                         rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+                                                                                         rdfs:label "Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Iriki
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Iriki> rdf:type owl:NamedIndividual ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :Lake ;
+                                                                                        :LakeIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> ,
+                                                                                                         <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+                                                                                        rdfs:comment "Lago che si trova in Marocco" ;
+                                                                                        rdfs:label "Iriki" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#IsolaRey
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#IsolaRey> rdf:type owl:NamedIndividual ,
+                                                                                                    :Destination ,
+                                                                                                    :GeographicEntity ,
+                                                                                                    :Island ;
+                                                                                           :IslandIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> ,
+                                                                                                              <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+                                                                                           rdfs:comment "Isola che si trova in Marocco" ;
+                                                                                           rdfs:label "IsolaRey" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jamon
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jamon> rdf:type owl:NamedIndividual ,
+                                                                                                 :Food ,
+                                                                                                 :IberianCuisine ,
+                                                                                                 :SpanishFood ;
+                                                                                        :IsMadeIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                  <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                        :Taste "salty"^^xsd:string ;
+                                                                                        rdfs:comment "Cibo preparato in Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jezero
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jezero> rdf:type owl:NamedIndividual ,
+                                                                                                  :Destination ,
+                                                                                                  :GeographicEntity ,
+                                                                                                  :Lake ;
+                                                                                         :LakeIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> ,
+                                                                                                          <https://www.wikidata.org/wiki/Q224#Croatia> ;
+                                                                                         rdfs:comment "Lago che si trova in Croazia" ;
+                                                                                         rdfs:label "Jezero" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lipari
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lipari> rdf:type owl:NamedIndividual ,
+                                                                                                  :Destination ,
+                                                                                                  :GeographicEntity ,
+                                                                                                  :Island ;
+                                                                                         :IslandIsLocatedIn :Italia ,
+                                                                                                            <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                         rdfs:comment "Isola che si trova in Italia" ;
+                                                                                         rdfs:label "Lipari" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lissa
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lissa> rdf:type owl:NamedIndividual ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :Island ;
+                                                                                        :IslandIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> ,
+                                                                                                           <https://www.wikidata.org/wiki/Q224#Croatia> ;
+                                                                                        rdfs:comment "Isola che si trova in Croazia" ;
+                                                                                        rdfs:label "Lissa" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Madrid
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Madrid> rdf:type owl:NamedIndividual ,
+                                                                                                  :City ,
+                                                                                                  :Destination ,
+                                                                                                  :GeographicEntity ,
+                                                                                                  :Metropolis ;
+                                                                                         :IsCapitalOf <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                      <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                         :Population 5000000 ;
+                                                                                         rdfs:comment "Capitale della Spagna" ;
+                                                                                         rdfs:label "Madrid" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarAdriatico
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarAdriatico> rdf:type owl:NamedIndividual ,
+                                                                                                        :Destination ,
+                                                                                                        :GeographicEntity ,
+                                                                                                        :Sea ;
+                                                                                               :SeaIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> ,
+                                                                                                               <https://www.wikidata.org/wiki/Q224#Croatia> ;
+                                                                                               rdfs:comment "Mare che si affaccia sull'Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDelleBaleari
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDelleBaleari> rdf:type owl:NamedIndividual ,
+                                                                                                           :Destination ,
+                                                                                                           :GeographicEntity ,
+                                                                                                           :Sea ;
+                                                                                                  :SeaIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                                  <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                                  rdfs:comment "Mare che si affaccia sulla Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDiAlboran
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDiAlboran> rdf:type owl:NamedIndividual ,
+                                                                                                        :Destination ,
+                                                                                                        :GeographicEntity ,
+                                                                                                        :Sea ;
+                                                                                               :SeaIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> ,
+                                                                                                               <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+                                                                                               rdfs:comment "Mare che si affaccia sul Marocco" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarEgeo
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarEgeo> rdf:type owl:NamedIndividual ,
+                                                                                                   :Destination ,
+                                                                                                   :GeographicEntity ,
+                                                                                                   :Sea ;
+                                                                                          :SeaIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                          <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                          rdfs:comment "Mare che si affaccia sulla Grecia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarIonio
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarIonio> rdf:type owl:NamedIndividual ,
+                                                                                                    :Destination ,
+                                                                                                    :GeographicEntity ,
+                                                                                                    :Sea ;
+                                                                                           :SeaIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                                                                                                           <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                           rdfs:comment "Mare che si affaccia sull'Albania" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarTirreno
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarTirreno> rdf:type owl:NamedIndividual ,
+                                                                                                      :Destination ,
+                                                                                                      :GeographicEntity ,
+                                                                                                      :Sea ;
+                                                                                             :SeaIsLocatedIn :Italia ,
+                                                                                                             <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                             rdfs:comment "Mare che si affaccia sulla Croazia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> rdf:type owl:NamedIndividual ,
+                                                                                                   :Country ,
+                                                                                                   :GeographicEntity ,
+                                                                                                   :MediterraneanState ,
+                                                                                                   :Region ,
+                                                                                                   :State ;
+                                                                                          owl:sameAs <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+                                                                                          :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rabat> ;
+                                                                                          :HasCity :Marrakech ;
+                                                                                          :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#IsolaRey> ;
+                                                                                          :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Iriki> ;
+                                                                                          :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Afella> ;
+                                                                                          :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Draa> ;
+                                                                                          :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDiAlboran> ;
+                                                                                          rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+                                                                                          rdfs:label "Marocco" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Miño
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Miño> rdf:type owl:NamedIndividual ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :River ;
+                                                                                       :RiverIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                         <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                       :Length 340 ;
+                                                                                       rdfs:comment "Fiume che si trova in Spagna" ;
+                                                                                       rdfs:label "Miño" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid> rdf:type owl:NamedIndividual ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :Lake ;
+                                                                                        <http://www.ontologydesignpatterns.org/cp/owl/partof.owl_#IsPartOf> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                                                                                                                                                            <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt> ,
+                                                                                                                                                            <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                        :LakeIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                                                                                                         <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                        rdfs:comment "Lago che si trova in Albania" ;
+                                                                                        rdfs:label "Ohrid" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Paella
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Paella> rdf:type owl:NamedIndividual ,
+                                                                                                  :Food ,
+                                                                                                  :IberianCuisine ,
+                                                                                                  :SpanishFood ;
+                                                                                         :IsMadeIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                   <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                         :Taste "salty"^^xsd:string ;
+                                                                                         rdfs:comment "Cibo preparato in Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Pizza
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Pizza> rdf:type owl:NamedIndividual ,
+                                                                                                 :Food ,
+                                                                                                 :ItalianFood ;
+                                                                                        :IsMadeIn :Italia ,
+                                                                                                  <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                        :Taste "salty"^^xsd:string ;
+                                                                                        rdfs:comment "Cibo preparato in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Plastiras
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Plastiras> rdf:type owl:NamedIndividual ,
+                                                                                                     :Destination ,
+                                                                                                     :GeographicEntity ,
+                                                                                                     :Lake ;
+                                                                                            :LakeIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                             <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                            rdfs:comment "Lago che si trova in Grecia" ;
+                                                                                            rdfs:label "Plastiras" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Po
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Po> rdf:type owl:NamedIndividual ,
+                                                                                              :Destination ,
+                                                                                              :GeographicEntity ,
+                                                                                              :River ;
+                                                                                     :RiverIsLocatedIn :Italia ,
+                                                                                                       <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                     :Length 650 ;
+                                                                                     rdfs:comment "Fiume che si trova in Italia" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rabat
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rabat> rdf:type owl:NamedIndividual ,
+                                                                                                 :City ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ;
+                                                                                        :IsCapitalOf <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> ,
+                                                                                                     <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+                                                                                        :Population 500000 ;
+                                                                                        rdfs:comment "Capitale del Marocco" ;
+                                                                                        rdfs:label "Rabat" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> rdf:type owl:NamedIndividual ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :Island ;
+                                                                                       :HasLessTourist <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> ,
+                                                                                                       <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> ,
+                                                                                                       <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> ;
+                                                                                       :IslandIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                          <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                       :NumTourists 300000 ;
+                                                                                       rdfs:comment "Isola che si trova in Grecia" ;
+                                                                                       rdfs:label "Rodi" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Roma
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Roma> rdf:type owl:NamedIndividual ,
+                                                                                                :City ,
+                                                                                                :Destination ,
+                                                                                                :GeographicEntity ,
+                                                                                                :Metropolis ;
+                                                                                       :IsCapitalOf :Italia ,
+                                                                                                    <https://www.wikidata.org/wiki/Q38#Italy> ;
+                                                                                       :Population 2800000 ;
+                                                                                       rdfs:comment "Capitale dell'Italia" ;
+                                                                                       rdfs:label "Roma" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Sanabria
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Sanabria> rdf:type owl:NamedIndividual ,
+                                                                                                    :Destination ,
+                                                                                                    :GeographicEntity ,
+                                                                                                    :Lake ;
+                                                                                           :LakeIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                            <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                           rdfs:comment "Lago che si trova in Spagna" ;
+                                                                                           rdfs:label "Sanabria" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> rdf:type owl:NamedIndividual ,
+                                                                                                     :Destination ,
+                                                                                                     :GeographicEntity ,
+                                                                                                     :Island ;
+                                                                                            :HasLessTourist <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> ,
+                                                                                                            <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> ;
+                                                                                            :HasMoreTourist <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> ;
+                                                                                            :IslandIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                                                                                                               <https://www.wikidata.org/wiki/Q41#Greece> ;
+                                                                                            :NumTourists 500000 ;
+                                                                                            rdfs:comment "Isola che si trova in Grecia" ;
+                                                                                            rdfs:label "Santorini" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> rdf:type owl:NamedIndividual ,
+                                                                                                  :Country ,
+                                                                                                  :GeographicEntity ,
+                                                                                                  :MediterraneanState ,
+                                                                                                  :Region ,
+                                                                                                  :State ;
+                                                                                         owl:sameAs <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                         :Does <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jamon> ,
+                                                                                               <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Paella> ,
+                                                                                               :Chorizo ,
+                                                                                               :PatatasBravas ;
+                                                                                         :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Madrid> ;
+                                                                                         :HasCity :Barcellona ;
+                                                                                         :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Formentera> ,
+                                                                                                    <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> ;
+                                                                                         :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Sanabria> ;
+                                                                                         :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Teide> ,
+                                                                                                      :ElToro ;
+                                                                                         :HasPopularIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> ;
+                                                                                         :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Miño> ;
+                                                                                         :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDelleBaleari> ;
+                                                                                         rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+                                                                                         rdfs:label "Spagna" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Teide
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Teide> rdf:type owl:NamedIndividual ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :Mountain ;
+                                                                                        :MountainIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                             <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                        :Height 3715 ;
+                                                                                        rdfs:comment "Montagna che si trova in Spagna(Isole Canarie)" ;
+                                                                                        rdfs:label "Teide" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> rdf:type owl:NamedIndividual ,
+                                                                                                    :Destination ,
+                                                                                                    :GeographicEntity ,
+                                                                                                    :Island ;
+                                                                                           :HasMoreTourist <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> ,
+                                                                                                           <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> ,
+                                                                                                           <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> ;
+                                                                                           :IslandIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                                                                                                              <https://www.wikidata.org/wiki/Q29#Spain> ;
+                                                                                           :NumTourists 10000000 ;
+                                                                                           rdfs:comment "Isola che si trova in Spagna" ;
+                                                                                           rdfs:label "Tenerife" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tirana
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tirana> rdf:type owl:NamedIndividual ,
+                                                                                                  :City ,
+                                                                                                  :Destination ,
+                                                                                                  :GeographicEntity ;
+                                                                                         :IsCapitalOf <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                                                                                                      <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                         :Population 600000 ;
+                                                                                         rdfs:comment "Capitale dell'Albania" ;
+                                                                                         rdfs:label "Tirana" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Vjosa
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Vjosa> rdf:type owl:NamedIndividual ,
+                                                                                                 :Destination ,
+                                                                                                 :GeographicEntity ,
+                                                                                                 :River ;
+                                                                                        :RiverIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                                                                                                          <https://www.wikidata.org/wiki/Q222#Albania> ;
+                                                                                        :Length 272 ;
+                                                                                        rdfs:comment "Fiume che si trova in Albania" .
+
+
+###  http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Zagabria
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Zagabria> rdf:type owl:NamedIndividual ,
+                                                                                                    :City ,
+                                                                                                    :Destination ,
+                                                                                                    :GeographicEntity ;
+                                                                                           :IsCapitalOf <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> ,
+                                                                                                        <https://www.wikidata.org/wiki/Q224#Croatia> ;
+                                                                                           :Population 800000 ;
+                                                                                           rdfs:comment "Capitale della Croazia" ;
+                                                                                           rdfs:label "Zagabria" .
+
+
+###  http://www.semanticweb.org/voyager#Appennini
+:Appennini rdf:type owl:NamedIndividual ,
+                    :Destination ,
+                    :GeographicEntity ,
+                    :Mountain ;
+           :MountainIsLocatedIn :Italia ,
+                                <https://www.wikidata.org/wiki/Q38#Italy> ;
+           :Height "2000"^^xsd:int .
+
+
+###  http://www.semanticweb.org/voyager#Barcellona
+:Barcellona rdf:type owl:NamedIndividual ,
+                     :City ,
+                     :Destination ,
+                     :GeographicEntity ,
+                     :Metropolis ;
+            :CityIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                             <https://www.wikidata.org/wiki/Q29#Spain> ;
+            :Population "1600000"^^xsd:int ;
+            rdfs:comment "Città che si trova in Spagna" ;
+            rdfs:label "Barcellona" .
+
+
+###  http://www.semanticweb.org/voyager#Chorizo
+:Chorizo rdf:type owl:NamedIndividual ,
+                  :Food ,
+                  :IberianCuisine ,
+                  :SpanishFood ;
+         :IsMadeIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                   <https://www.wikidata.org/wiki/Q29#Spain> ;
+         :Taste "Spicy"^^xsd:string .
+
+
+###  http://www.semanticweb.org/voyager#Dubrovnik
+:Dubrovnik rdf:type owl:NamedIndividual ,
+                    :City ,
+                    :Destination ,
+                    :GeographicEntity ;
+           :CityIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia> ,
+                            <https://www.wikidata.org/wiki/Q224#Croatia> ;
+           :Population "42000"^^xsd:int ;
+           rdfs:comment "Città che si trova in Croazia" ;
+           rdfs:label "Dubrovnick" .
+
+
+###  http://www.semanticweb.org/voyager#ElToro
+:ElToro rdf:type owl:NamedIndividual ,
+                 :Destination ,
+                 :GeographicEntity ,
+                 :Mountain ;
+        :MountainIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                             <https://www.wikidata.org/wiki/Q29#Spain> ;
+        :Height "350"^^xsd:int .
+
+
+###  http://www.semanticweb.org/voyager#Italia
+:Italia rdf:type owl:NamedIndividual ,
+                 :Country ,
+                 :GeographicEntity ,
+                 :MediterraneanState ,
+                 :Region ,
+                 :State ;
+        owl:sameAs <https://www.wikidata.org/wiki/Q38#Italy> ;
+        :Does <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Arancino> ,
+              <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Carbonara> ,
+              <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Pizza> ;
+        :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Roma> ;
+        :HasCity :Milano ;
+        :HasDestination <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi> ,
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como> ;
+        :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> ,
+                   <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lipari> ;
+        :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como> ;
+        :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi> ,
+                     :Appennini ;
+        :HasPopularIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> ;
+        :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Po> ;
+        :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarTirreno> ;
+        rdfs:comment "Stato che si affaccia sul Mediterraneo" ;
+        rdfs:label "Italia"^^xsd:string .
+
+
+###  http://www.semanticweb.org/voyager#Marrakech
+:Marrakech rdf:type owl:NamedIndividual ,
+                    :City ,
+                    :Destination ,
+                    :GeographicEntity ;
+           :CityIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco> ,
+                            <https://www.wikidata.org/wiki/Q1028#Morocco> ;
+           :Population "950000"^^xsd:int ;
+           rdfs:comment "Città che si trova in Marocco" ;
+           rdfs:label "Marrakech" .
+
+
+###  http://www.semanticweb.org/voyager#Milano
+:Milano rdf:type owl:NamedIndividual ,
+                 :City ,
+                 :Destination ,
+                 :GeographicEntity ,
+                 :Metropolis ;
+        :CityIsLocatedIn :Italia ,
+                         <https://www.wikidata.org/wiki/Q38#Italy> ;
+        :Population "1500000"^^xsd:int ;
+        rdfs:comment "Città che si trova in Italia" ;
+        rdfs:label "Milano" .
+
+
+###  http://www.semanticweb.org/voyager#PatatasBravas
+:PatatasBravas rdf:type owl:NamedIndividual ,
+                        :Food ,
+                        :IberianCuisine ,
+                        :SpanishFood ;
+               :IsMadeIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna> ,
+                         <https://www.wikidata.org/wiki/Q29#Spain> ;
+               :Taste "Salty"^^xsd:string .
+
+
+###  http://www.semanticweb.org/voyager#Salonicco
+:Salonicco rdf:type owl:NamedIndividual ,
+                    :City ,
+                    :Destination ,
+                    :GeographicEntity ;
+           :CityIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia> ,
+                            <https://www.wikidata.org/wiki/Q41#Greece> ;
+           :Population "350000"^^xsd:int ;
+           rdfs:comment "Città che si trova in Grecia" ;
+           rdfs:seeAlso "Salonicco" .
+
+
+###  http://www.semanticweb.org/voyager#Valona
+:Valona rdf:type owl:NamedIndividual ,
+                 :City ,
+                 :Destination ,
+                 :GeographicEntity ;
+        :CityIsLocatedIn <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania> ,
+                         <https://www.wikidata.org/wiki/Q222#Albania> ;
+        :Population "200000"^^xsd:int ;
+        rdfs:comment "Città che si trova in Albania" ;
+        rdfs:label "Valona" .
+
+
+###  https://www.wikidata.org/wiki/Q1028#Morocco
+<https://www.wikidata.org/wiki/Q1028#Morocco> rdf:type owl:NamedIndividual ,
+                                                       :Country ,
+                                                       :GeographicEntity ,
+                                                       :MediterraneanState ,
+                                                       :Region ,
+                                                       :State ;
+                                              :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rabat> ;
+                                              :HasCity :Marrakech ;
+                                              :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#IsolaRey> ;
+                                              :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Iriki> ;
+                                              :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Afella> ;
+                                              :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Draa> ;
+                                              :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDiAlboran> .
+
+
+###  https://www.wikidata.org/wiki/Q222#Albania
+<https://www.wikidata.org/wiki/Q222#Albania> rdf:type owl:NamedIndividual ,
+                                                      :Country ,
+                                                      :GeographicEntity ,
+                                                      :MediterraneanState ,
+                                                      :Region ,
+                                                      :State ;
+                                             <http://www.ontologydesignpatterns.org/cp/owl/partof.owl#HasPart> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt> ,
+                                                                                                               <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid> ;
+                                             :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tirana> ;
+                                             :HasCity :Valona ;
+                                             :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Ohrid> ;
+                                             :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dajt> ;
+                                             :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Vjosa> ;
+                                             :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarIonio> .
+
+
+###  https://www.wikidata.org/wiki/Q224#Croatia
+<https://www.wikidata.org/wiki/Q224#Croatia> rdf:type owl:NamedIndividual ,
+                                                      :Country ,
+                                                      :GeographicEntity ,
+                                                      :MediterraneanState ,
+                                                      :Region ,
+                                                      :State ;
+                                             :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Zagabria> ;
+                                             :HasCity :Dubrovnik ;
+                                             :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lissa> ;
+                                             :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jezero> ;
+                                             :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Dinara> ;
+                                             :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Danubio> ;
+                                             :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarAdriatico> .
+
+
+###  https://www.wikidata.org/wiki/Q29#Spain
+<https://www.wikidata.org/wiki/Q29#Spain> rdf:type owl:NamedIndividual ,
+                                                   :Country ,
+                                                   :GeographicEntity ,
+                                                   :MediterraneanState ,
+                                                   :Region ,
+                                                   :State ;
+                                          :Does <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Jamon> ,
+                                                <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Paella> ,
+                                                :Chorizo ,
+                                                :PatatasBravas ;
+                                          :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Madrid> ;
+                                          :HasCity :Barcellona ;
+                                          :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Formentera> ,
+                                                     <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> ;
+                                          :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Sanabria> ;
+                                          :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Teide> ,
+                                                       :ElToro ;
+                                          :HasPopularIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tenerife> ;
+                                          :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Miño> ;
+                                          :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarDelleBaleari> .
+
+
+###  https://www.wikidata.org/wiki/Q38#Italy
+<https://www.wikidata.org/wiki/Q38#Italy> rdf:type owl:NamedIndividual ,
+                                                   :Country ,
+                                                   :GeographicEntity ,
+                                                   :MediterraneanState ,
+                                                   :Region ,
+                                                   :State ;
+                                          :Does <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Arancino> ,
+                                                <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Carbonara> ,
+                                                <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Pizza> ;
+                                          :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Roma> ;
+                                          :HasCity :Milano ;
+                                          :HasDestination <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi> ,
+                                                          <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como> ;
+                                          :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> ,
+                                                     <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Lipari> ;
+                                          :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Como> ;
+                                          :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Alpi> ,
+                                                       :Appennini ;
+                                          :HasPopularIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Capri> ;
+                                          :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Po> ;
+                                          :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarTirreno> ;
+                                          rdfs:label "Italia" .
+
+
+###  https://www.wikidata.org/wiki/Q41#Greece
+<https://www.wikidata.org/wiki/Q41#Greece> rdf:type owl:NamedIndividual ,
+                                                    :Country ,
+                                                    :GeographicEntity ,
+                                                    :MediterraneanState ,
+                                                    :Region ,
+                                                    :State ;
+                                           :Does <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Baklava> ,
+                                                 <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Feta> ;
+                                           :HasCapital <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Atene> ;
+                                           :HasCity :Salonicco ;
+                                           :HasIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> ,
+                                                      <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> ;
+                                           :HasLake <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Plastiras> ;
+                                           :HasMountain <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Enos> ;
+                                           :HasPopularIsland <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rodi> ,
+                                                             <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Santorini> ;
+                                           :HasRiver <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Evros> ;
+                                           :HasSea <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#MarEgeo> .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BalkanCuisine
+                :IberianCuisine
+                :ItalianFood
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :City
+                :Island
+                :Lake
+                :Mountain
+                :River
+                :Sea
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Destination
+                :Food
+                :Region
+              )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Albania>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Croazia>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Grecia>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Marocco>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Spagna>
+                        :Italia
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Atene>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Atene>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Madrid>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Rabat>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Roma>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Tirana>
+                        <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#Zagabria>
+                        :Barcellona
+                        :Dubrovnik
+                        :Marrakech
+                        :Milano
+                        :Salonicco
+                        :Valona
+                      )
+] .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#c> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#p> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#s> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#m> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#l> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Se la nazione ha una montagna e la montagna ha un lago allora la nazione ha come destinazione il lago"^^xsd:string ;
+   rdfs:label "S4"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Mountain ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#m>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :HasLake ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#m> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#l>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :HasMountain ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#s> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#m>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :State ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#s>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :Lake ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#l>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :HasDestination ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#s> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#l>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Se un lago si trova in montagna allora è un lago di montagna"^^xsd:string ;
+   rdfs:label "S1"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Mountain ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#m>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :HasLake ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#m> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#l>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Lake ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#l>
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :MountainLake ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#l>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Se la città ha una popolazione superiore al milione di abitanti allora è una metropoli"^^xsd:string ;
+   rdfs:label "S3"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :City ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#c>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                  <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                               rdf:first <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#p> ;
+                                                                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                                                                          rdf:first 1000000 ;
+                                                                                                                          rdf:rest rdf:nil
+                                                                                                                        ]
+                                                                                                             ]
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :Population ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#c> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#p>
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Metropolis ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#c>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Se lo stato contiene un'isola con molti turisti allora lo stato ha un'isola popolare"^^xsd:string ;
+   rdfs:label "S2"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Island ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :HasIsland ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#s> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :State ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#s>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t> ;
+                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                rdf:first 100000 ;
+                                                                                                                                                rdf:rest rdf:nil
+                                                                                                                                              ]
+                                                                                                                                   ]
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :NumTourists ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :HasPopularIsland ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#s> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Se il numero di turisti della prima isola è più grande del numero di turisti della seconda isola allora inferiamo che Isola1 ha più turisti di Isola2"^^xsd:string ;
+   rdfs:label "S5"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t1>
+                                                                                                    <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t2>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Island ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i1>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :NumTourists ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i1> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t1>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :NumTourists ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i2> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#t2>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :Island ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i2>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :HasMoreTourist ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/antoniobushaj/ontologies/2022/5/untitled-ontology-12#i2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
